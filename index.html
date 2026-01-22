@@ -8,12 +8,10 @@
   <meta name="description" content="Baseline Project Systems, LLC | Microsoft 365, Power Platform, and enterprise PMO solutions for federal clients." />
 
   <!-- Favicon / Browser Tab Icons -->
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#0b5aa6">
 
   <style>
@@ -45,9 +43,6 @@
           radial-gradient(900px 500px at 85% 10%, rgba(214,40,40,.18), transparent 60%),
           var(--bg);
       }
-      header{
-        background:linear-gradient(180deg, rgba(17,24,39,.95), rgba(17,24,39,.85));
-      }
       .pill{
         background:#020617;
         color:#e5e7eb;
@@ -77,15 +72,22 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       backdrop-filter:blur(6px);
+      /* Header background now matches cards */
+      background:var(--card);
     }
 
-    .brand{display:flex;align-items:center;gap:16px}
-    .brand img{width:110px;border-radius:14px}
+    .brand{display:flex;align-items:center;gap:16px;min-width:0}
+    .brand img{width:110px;height:auto;display:block;border-radius:14px}
 
+    .title{min-width:0}
     .title h1{
       margin:0;
       font-size:24px;
       letter-spacing:.2px;
+      line-height:1.15;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
     .title p{
       margin:6px 0 0;
@@ -142,6 +144,7 @@
       header{flex-direction:column;align-items:flex-start}
       .pillrow{margin-left:0;justify-content:flex-start}
       .grid{grid-template-columns:1fr}
+      .title h1{white-space:normal}
     }
 
     .card{
@@ -164,6 +167,7 @@
       margin:0;
       font-size:15.5px;
       line-height:1.55;
+      color:var(--ink);
     }
 
     ul{margin:10px 0 0 18px;padding:0}
@@ -244,8 +248,9 @@
             <h2>Differentiators</h2>
             <ul>
               <li>PMO stand-up and governance enablement</li>
-              <li>Workflow-driven applications that ensure adoption and execution discipline</li>
-              <li>Embedded data validation, quality checks, and automated alerts</li>
+              <li>Rapid delivery of full products (data storage, apps, dashboards) and continuous iteration</li>
+              <li>Modern UI/UX design</li>
+              <li>Trusted, rolled-up reporting that supports project, program, and portfolio decision</li>
               <li>Solutions built on licenses agencies already own</li>
             </ul>
           </div>
