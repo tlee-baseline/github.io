@@ -125,7 +125,8 @@
     .muted{color:var(--muted)}
     .split{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      /* Increased width of each block by ~50% by making both columns wider */
+      grid-template-columns: 1.5fr 1.5fr;
       gap:16px;
     }
     @media (max-width: 680px){ .split{grid-template-columns:1fr} }
@@ -182,6 +183,7 @@
       <div class="pillrow">
         <span class="pill"><span class="dot"></span> Microsoft 365</span>
         <span class="pill"><span class="dot red"></span> Power Platform</span>
+        <span class="pill"><span class="dot"></span> Project Online</span>
         <span class="pill"><span class="dot"></span> Federal PMO</span>
       </div>
     </header>
@@ -223,10 +225,10 @@
         <aside class="card">
           <h2>Tools &amp; Platforms</h2>
           <ul>
-            <li>Power Apps, Power Automate, Power BI, Dataverse</li>
-            <li>SharePoint Online, Microsoft Teams, Microsoft Lists</li>
+            <li>Power Apps, Power Automate, Power BI, Power BI Report Builder, Dataverse</li>
+            <li>SharePoint Online, Microsoft Teams, Microsoft Lists, Planner Premium</li>
             <li>Project Online / Project Server (SE) ecosystems</li>
-            <li>Power BI paginated reports, subscriptions, and executive-ready exports</li>
+            <li>Power BI paginated reports, automated subscriptions, and executive-ready exports</li>
           </ul>
 
           <div style="margin-top:14px">
@@ -245,6 +247,9 @@
             <ul>
               <li>Rapid onboarding for prime/subcontract engagements</li>
               <li>Documented delivery approach: requirements → build → deploy → train → report</li>
+              <li>Timekeeping, status cadence, and deliverable tracking aligned to program governance</li>
+              <li>Clean handoff artifacts: user guides, release notes, admin notes, and sustainment recommendations</li>
+              <li>Structured backlog intake, prioritization, and iteration planning to maintain execution tempo</li>
             </ul>
           </div>
         </aside>
