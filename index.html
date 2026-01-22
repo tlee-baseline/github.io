@@ -149,12 +149,17 @@
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       color:var(--muted);
       font-size:12.5px;
       padding:14px 4px 0;
       border-top:1px solid var(--border);
+    }
+    .footer-left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
     }
   </style>
 </head>
@@ -163,14 +168,11 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <img src="logo.png" alt="Baseline Project Systems Logo" />
+        <img src="Logo.png" alt="Baseline Project Systems Logo" />
         <div class="title">
           <h1>Baseline Project Systems, LLC | Thomas Lee</h1>
           <p class="muted">
             Workflow-driven delivery across Microsoft 365 — from requirements to adoption — with trusted, rolled-up reporting for decision-making.
-          </p>
-          <p class="muted" style="margin-top:4px;">
-            Headquartered in Alexandria, VA
           </p>
         </div>
       </div>
@@ -180,6 +182,8 @@
         <span class="pill"><span class="dot red"></span> Power Platform</span>
         <span class="pill"><span class="dot"></span> Project Online</span>
         <span class="pill"><span class="dot"></span> Federal PMO</span>
+        <span class="pill"><span class="dot"></span> Project Management</span>
+        <span class="pill"><span class="dot"></span> Process Automation</span>
       </div>
     </header>
 
@@ -240,12 +244,13 @@
       </div>
 
       <div class="footer">
-        <div>© <span id="y"></span> Baseline Project Systems, LLC</div>
+        <div class="footer-left">
+          <div>© <span id="y"></span> Baseline Project Systems, LLC</div>
+          <div>Alexandria, VA</div>
+        </div>
         <div>
           Contact:
-          <a href="mailto:tlee@baselineprojectsystems.com">
-            tlee@baselineprojectsystems.com
-          </a>
+          <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
         </div>
       </div>
     </main>
