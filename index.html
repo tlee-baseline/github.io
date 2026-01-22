@@ -44,7 +44,6 @@
     .brand{
       display:flex; align-items:center; gap:16px; min-width:0;
     }
-    /* LOGO INCREASED ~50% */
     .brand img{
       width:110px; height:auto; display:block;
       border-radius:14px;
@@ -89,7 +88,6 @@
 
     main{margin-top:18px}
 
-    /* WIDER LEFT COLUMN TO ALLOW COMPETENCIES / DIFFERENTIATORS TO GROW */
     .grid{
       display:grid;
       grid-template-columns: 2fr 1fr;
@@ -135,10 +133,10 @@
     li{margin:8px 0; line-height:1.45}
     .muted{color:var(--muted)}
 
-    /* CORE COMPETENCIES + DIFFERENTIATORS EACH ~50% WIDER */
+    /* Core Competencies reduced ~15% vs Differentiators */
     .split{
       display:grid;
-      grid-template-columns: 3fr 3fr;
+      grid-template-columns: 2.55fr 3fr;
       gap:20px;
     }
 
@@ -147,7 +145,7 @@
     }
 
     .footer{
-      margin-top:16px;
+      margin-top:24px;
       display:flex;
       gap:12px;
       flex-wrap:wrap;
@@ -155,29 +153,8 @@
       justify-content:space-between;
       color:var(--muted);
       font-size:12.5px;
-      padding:12px 2px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background:linear-gradient(135deg, var(--bps-blue), #0a4c8c);
-      color:#fff;
-      border:none;
-      border-radius:12px;
-      padding:10px 14px;
-      font-size:13px;
-      cursor:pointer;
-      text-decoration:none;
-      box-shadow: 0 10px 18px rgba(11,90,166,.18);
-    }
-    .btn:hover{filter:brightness(1.02); text-decoration:none}
-    .btn.secondary{
-      background:#fff;
-      color:#111827;
-      border:1px solid var(--border);
-      box-shadow:none;
+      padding:14px 4px 0;
+      border-top:1px solid var(--border);
     }
   </style>
 </head>
@@ -249,16 +226,7 @@
             <li>Power BI paginated reports, automated subscriptions, and executive-ready exports</li>
           </ul>
 
-          <div style="margin-top:16px">
-            <h2>Contact</h2>
-            <p class="muted" style="margin:0 0 10px">
-              Use your preferred contact method below.
-            </p>
-            <a class="btn" href="mailto:tlee@baselineprojectsystems.com">Email</a>
-            <a class="btn secondary" href="#" onclick="navigator.clipboard.writeText(window.location.href); return false;">Copy Site Link</a>
-          </div>
-
-          <div style="margin-top:16px">
+          <div style="margin-top:18px">
             <h2>Engagement Readiness</h2>
             <ul>
               <li>Rapid onboarding for prime and subcontract engagements</li>
@@ -273,7 +241,12 @@
 
       <div class="footer">
         <div>© <span id="y"></span> Baseline Project Systems, LLC</div>
-        <div class="muted">Powered by GitHub Pages</div>
+        <div>
+          Contact:
+          <a href="mailto:tlee@baselineprojectsystems.com">
+            tlee@baselineprojectsystems.com
+          </a>
+        </div>
       </div>
     </main>
   </div>
