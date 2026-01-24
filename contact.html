@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact | Baseline Project Systems</title>
+  <meta name="description" content="Contact Baseline Project Systems, LLC." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="logo.png" alt="Baseline Project Systems Logo">
+        <div class="title">
+          <h1>Baseline Project Systems, LLC</h1>
+          <p>Workflow-driven delivery across Microsoft 365 — from requirements to adoption — with trusted, rolled-up reporting.</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html"><span class="dot"></span>Home</a>
+        <a href="services.html"><span class="dot red"></span>Services</a>
+        <a href="about.html"><span class="dot"></span>About Us</a>
+        <a href="contact.html" aria-current="page"><span class="dot"></span>Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="grid">
+        <section class="card">
+          <h2>Contact</h2>
+          <p class="lead">
+            For teaming, delivery support, or a quick capabilities discussion, reach out using the email below or send a message.
+          </p>
+
+          <form class="form" action="mailto:tlee@baselineprojectsystems.com" method="post" enctype="text/plain">
+            <label>
+              Name
+              <input name="name" autocomplete="name" required>
+            </label>
+
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" required>
+            </label>
+
+            <label>
+              Message
+              <textarea name="message" required></textarea>
+            </label>
+
+            <button class="button" type="submit">Send</button>
+          </form>
+        </section>
+
+        <aside class="card">
+          <h2>Direct</h2>
+          <ul>
+            <li>Email: <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a></li>
+            <li>Location: Alexandria, VA</li>
+          </ul>
+
+          <h2 style="margin-top:18px">Typical Requests</h2>
+          <ul>
+            <li>Power Platform app + workflow delivery</li>
+            <li>Power BI rollup reporting</li>
+            <li>Project Online modernization</li>
+            <li>PMO governance and tooling</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="footer">
+        <div class="footer-left">
+          <div>© <span id="y"></span> Baseline Project Systems, LLC</div>
+          <div>Alexandria, VA</div>
+        </div>
+        <div>
+          <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
