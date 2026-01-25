@@ -58,7 +58,6 @@
       display:block;
     }
 
-    /* Desktop nav */
     nav ul{
       list-style:none;
       margin:0;
@@ -90,57 +89,14 @@
 
     nav a:hover::after{ width:100%; }
 
-    /* Mobile menu button: hidden by default (desktop) */
-    .menu-toggle{
-      display:none;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--header-border);
-      border-radius:12px;
-      background:#fff;
-      color:var(--ink);
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .menu-toggle:focus{
-      outline:none;
-      box-shadow:0 0 0 4px rgba(11,90,166,.12);
-      border-color:rgba(11,90,166,.40);
-    }
-
-    .hamburger{
-      width:18px;
-      height:12px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .hamburger span{
-      height:2px;
-      width:100%;
-      background:var(--ink);
-      border-radius:2px;
-      display:block;
-    }
-
-    /* ================= MOBILE OVERLAY (default hidden everywhere) ================= */
-    .mobile-overlay{ display:none; }
-    .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
-
     /* ================= HERO ================= */
     .hero{
       position:relative;
       min-height:100vh;
       display:flex;
-      align-items:center;
       justify-content:center;
       padding:40px 20px;
-      background-image:url("hero-military-dashboard.jpg");
-      background-size:cover;
-      background-position:center;
+      background:url("hero-military-dashboard.jpg") center / cover no-repeat;
       text-align:center;
     }
 
@@ -149,21 +105,21 @@
       position:absolute;
       inset:0;
       background:rgba(2,6,23,.72);
-      backdrop-filter:blur(1px);
     }
 
+    /* 🔼 Move content higher */
     .hero-content{
       position:relative;
       max-width:980px;
+      margin-top:8vh;   /* pushes content higher in the image */
     }
 
-    /* NEW: hero lead statement (bigger, above main text) */
     .hero-lead{
-      margin:0 auto 18px;
-      font-size:clamp(20px, 3.2vw, 34px);
+      margin:0 auto 20px;
+      font-size:clamp(22px, 3.2vw, 36px);
       font-weight:800;
       letter-spacing:.01em;
-      line-height:1.18;
+      line-height:1.15;
       color:#ffffff;
       text-shadow:0 2px 18px rgba(0,0,0,.35);
     }
@@ -175,9 +131,17 @@
       margin:0;
     }
 
-    .mission-text + .mission-text{ margin-top:22px; }
+    /* normal paragraph spacing */
+    .mission-text + .mission-text{
+      margin-top:22px;
+    }
 
-    /* ================= CAPABILITIES (BOTTOM) ================= */
+    /* extra break before second paragraph */
+    .mission-break{
+      margin-top:36px;
+    }
+
+    /* ================= CAPABILITIES ================= */
     .capability-section{
       background:#ffffff;
       border-top:1px solid var(--section-border);
@@ -223,17 +187,11 @@
       border-color:rgba(11,90,166,.22);
     }
 
-    /* icons 50% smaller */
     .image-card img{
       width:50%;
       height:auto;
       display:block;
       margin:0 auto;
-      transition:transform .25s ease;
-    }
-
-    .image-card:hover img{
-      transform:translateY(-2px);
     }
 
     .image-card h3{
@@ -268,268 +226,60 @@
       padding:0 32px 0 20px;
       color:var(--footer-text);
       font-size:14px;
-      line-height:1.6;
     }
-
-    .footer-left{
-      display:flex;
-      flex-direction:column;
-    }
-
-    .footer-right a{
-      color:var(--footer-text);
-      text-decoration:none;
-      font-weight:600;
-    }
-
-    .footer-right a:hover{ text-decoration:underline; }
 
     /* ================= RESPONSIVE ================= */
     @media (max-width:768px){
-      .logo img{ height:62px; }
+      .hero-content{
+        margin-top:6vh; /* slightly less lift on mobile */
+      }
 
-      /* Hide desktop nav, show menu button */
       nav{ display:none; }
-      .menu-toggle{ display:flex; }
-
-      /* Enable overlay ONLY on mobile */
-      .mobile-overlay{
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(2,6,23,.65);
-        z-index:9999;
-      }
-
-      .mobile-overlay.is-open{ display:block; }
-
-      .mobile-panel{
-        background:#fff;
-        color:var(--ink);
-        width:100%;
-        height:100%;
-        padding:24px 18px;
-      }
-
-      .mobile-links{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        margin-top:10px;
-      }
-
-      .mobile-links a{
-        text-decoration:none;
-        color:var(--ink);
-        font-weight:800;
-        font-size:22px;
-        padding:16px 14px;
-        border-radius:14px;
-        background:#f8fafc;
-        border:1px solid #eef2f7;
-      }
 
       .capability-row{
         flex-direction:column;
-        padding:18px 18px;
+        padding:18px;
         gap:18px;
       }
 
       .image-card{ width:100%; }
-      .image-card img{ width:45%; }
-
-      .footer-inner{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-      }
     }
-
-    /* lock scroll when menu open */
-    body.menu-open{ overflow:hidden; }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER (not sticky) -->
-  <header>
-    <div class="header-inner">
-      <div class="logo">
-        <img src="logo.png" alt="Baseline Logo">
-      </div>
-
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="mission.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay" type="button">
-        <span class="hamburger" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-        Menu
-      </button>
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <img src="logo.png" alt="Baseline Logo">
     </div>
-  </header>
-
-  <!-- MOBILE OVERLAY NAV -->
-  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
-    <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
-      <div class="mobile-links">
-        <a role="menuitem" href="index.html">Home</a>
-        <a role="menuitem" href="services.html">Services</a>
-        <a role="menuitem" href="mission.html">About</a>
-        <a role="menuitem" href="contact.html">Contact</a>
-      </div>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="mission.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <!-- HERO IMAGE + UPDATED TEXT -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-lead">
-        System orchestration on modern platforms—everything working together, simply and reliably.
-      </h1>
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-lead">
+      System orchestration on modern platforms—everything working together, simply and reliably.
+    </h1>
 
-      <p class="mission-text">
-        Baseline delivers workflow-driven project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. Our solutions are designed to integrate cleanly into existing delivery environments, providing intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
-      </p>
+    <p class="mission-text">
+      Baseline delivers workflow-driven project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. Our solutions are designed to integrate cleanly into existing delivery environments, providing intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
+    </p>
 
-      <p class="mission-text">
-        With a focus on rapid deployment and operational reliability, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
-      </p>
-    </div>
-  </section>
-
-  <!-- CAPABILITIES (BOTTOM) IN YOUR SPECIFIED ORDER -->
-  <section class="capability-section" aria-label="Capabilities">
-
-    <!-- Row 1: M365, Project, Process Automation -->
-    <div class="capability-row">
-      <div class="image-card">
-        <img src="m365.png" alt="M365 Custom Applications">
-        <h3>M365 Custom Applications</h3>
-        <p>Purpose-built tools aligned to how your teams work.</p>
-      </div>
-
-      <div class="image-card">
-        <img src="projectmgmt.png" alt="Project Management">
-        <h3>Project Management</h3>
-        <p>Structured execution with clarity, accountability, and control.</p>
-      </div>
-
-      <div class="image-card">
-        <img src="processauto.png" alt="Process Automation">
-        <h3>Process Automation</h3>
-        <p>Streamlining workflows to reduce effort and enforce consistency.</p>
-      </div>
-    </div>
-
-    <!-- Row 2: Enterprise Data, Enterprise Dashboards, Task -->
-    <div class="capability-row">
-      <div class="image-card">
-        <img src="Enterprisedata.png" alt="Enterprise Data &amp; Analytics">
-        <h3>Enterprise Data &amp; Analytics</h3>
-        <p>Trusted data transformed into actionable intelligence.</p>
-      </div>
-
-      <div class="image-card">
-        <img src="enterprisedash.png" alt="Enterprise Dashboards">
-        <h3>Enterprise Dashboards</h3>
-        <p>Real-time visibility from operational detail to executive insight.</p>
-      </div>
-
-      <div class="image-card">
-        <img src="taskmgmt.png" alt="Task Management">
-        <h3>Task Management</h3>
-        <p>Simple, intuitive tracking that drives day-to-day execution.</p>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        <div>Copyright © 2026 Baseline Project Systems, LLC</div>
-        <div>Alexandria, VA</div>
-      </div>
-      <div class="footer-right">
-        <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu toggle
-    (function () {
-      const toggle = document.getElementById("menuToggle");
-      const overlay = document.getElementById("mobileOverlay");
-
-      if (!toggle || !overlay) return;
-
-      function openMenu() {
-        overlay.classList.add("is-open");
-        document.body.classList.add("menu-open");
-        toggle.setAttribute("aria-expanded", "true");
-        overlay.setAttribute("aria-hidden", "false");
-      }
-
-      function closeMenu() {
-        overlay.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
-        toggle.setAttribute("aria-expanded", "false");
-        overlay.setAttribute("aria-hidden", "true");
-      }
-
-      function isOpen() {
-        return overlay.classList.contains("is-open");
-      }
-
-      toggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        isOpen() ? closeMenu() : openMenu();
-      });
-
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeMenu();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && isOpen()) closeMenu();
-      });
-
-      overlay.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => closeMenu());
-      });
-    })();
-
-    // Animate cards in on scroll
-    (function () {
-      const cards = document.querySelectorAll(".image-card");
-      if (!("IntersectionObserver" in window) || !cards.length) {
-        cards.forEach(c => c.classList.add("is-visible"));
-        return;
-      }
-
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      cards.forEach((c) => obs.observe(c));
-    })();
-  </script>
+    <p class="mission-text mission-break">
+      With a focus on rapid deployment and operational reliability, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
+    </p>
+  </div>
+</section>
 
 </body>
 </html>
