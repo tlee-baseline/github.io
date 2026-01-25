@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Mission | Baseline</title>
 
-  <meta name="description" content="Baseline modernizes the enterprise through intuitive applications and enterprise reporting for federal government clients." />
+  <meta name="description" content="Baseline delivers workflow-driven project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients." />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -154,17 +154,28 @@
 
     .hero-content{
       position:relative;
-      max-width:900px;
+      max-width:980px;
+    }
+
+    /* NEW: hero lead statement (bigger, above main text) */
+    .hero-lead{
+      margin:0 auto 18px;
+      font-size:clamp(20px, 3.2vw, 34px);
+      font-weight:800;
+      letter-spacing:.01em;
+      line-height:1.18;
+      color:#ffffff;
+      text-shadow:0 2px 18px rgba(0,0,0,.35);
     }
 
     .mission-text{
-      font-size:clamp(15px,2vw,18px);
+      font-size:clamp(15px, 2vw, 18px);
       line-height:1.75;
       color:#e5e7eb;
       margin:0;
     }
 
-    .mission-text + .mission-text{ margin-top:26px; }
+    .mission-text + .mission-text{ margin-top:22px; }
 
     /* ================= CAPABILITIES (BOTTOM) ================= */
     .capability-section{
@@ -181,7 +192,7 @@
     }
 
     .capability-row + .capability-row{
-      border-top:1px solid var(--section-border); /* subtle divider between rows */
+      border-top:1px solid var(--section-border);
     }
 
     .image-card{
@@ -378,15 +389,19 @@
     </div>
   </div>
 
-  <!-- HERO IMAGE + MISSION -->
+  <!-- HERO IMAGE + UPDATED TEXT -->
   <section class="hero">
     <div class="hero-content">
+      <h1 class="hero-lead">
+        System orchestration on modern platforms—everything working together, simply and reliably.
+      </h1>
+
       <p class="mission-text">
-        Baseline specializes in developing intuitive, user-centric applications, enterprise data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+        Baseline delivers workflow-driven project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. Our solutions are designed to integrate cleanly into existing delivery environments, providing intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
       </p>
 
       <p class="mission-text">
-        With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
+        With a focus on rapid deployment and operational reliability, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
       </p>
     </div>
   </section>
