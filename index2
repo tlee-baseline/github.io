@@ -17,6 +17,7 @@
     :root{
       --bps-blue:#0b5aa6;
       --ink:#0f172a;
+      --muted:#475569;
       --header-border:#e5e7eb;
 
       --footer-bg:#1f2933;
@@ -89,46 +90,6 @@
 
     nav a:hover::after{ width:100%; }
 
-    /* Mobile menu button: hidden by default (desktop) */
-    .menu-toggle{
-      display:none;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--header-border);
-      border-radius:12px;
-      background:#fff;
-      color:var(--ink);
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .menu-toggle:focus{
-      outline:none;
-      box-shadow:0 0 0 4px rgba(11,90,166,.12);
-      border-color:rgba(11,90,166,.40);
-    }
-
-    .hamburger{
-      width:18px;
-      height:12px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .hamburger span{
-      height:2px;
-      width:100%;
-      background:var(--ink);
-      border-radius:2px;
-      display:block;
-    }
-
-    /* ================= MOBILE OVERLAY (default hidden everywhere) ================= */
-    .mobile-overlay{ display:none; }
-    .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
-
     /* ================= HERO ================= */
     .hero{
       position:relative;
@@ -165,32 +126,34 @@
 
     .mission-text + .mission-text{ margin-top:26px; }
 
-    /* ================= WHITE CAPABILITY SECTION ================= */
-    .capability-section{
-      background:var(--section-bg);
-      border-top:1px solid var(--section-border);
-      border-bottom:1px solid var(--section-border);
-      color:var(--ink);
+    /* ================= IMAGE SECTION ================= */
+    .image-section{
+      display: flex;
+      justify-content: space-between;
+      margin: 40px 0;
+      flex-wrap: wrap;
     }
 
-    .capability-inner{
-      padding:48px 32px;
-      display:flex;
-      justify-content:center;
+    .image-card{
+      width: 32%;  /* Each image takes up about a third of the row */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
-    /* +100% size vs your original 520px */
-    .capability-card{
-      width:min(1040px, 100%);
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    .image-card img{
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
-    .capability-card img{
-      width:100%;
-      height:auto;
-      display:block;
+    .image-card p{
+      font-size: 16px;
+      color: var(--ink);
+      text-align: center;
+      margin-top: 12px;
     }
 
     /* ================= FOOTER ================= */
@@ -236,39 +199,7 @@
 
       /* Enable overlay ONLY on mobile */
       .mobile-overlay{
-        display:none;               /* hidden until opened */
-        position:fixed;
-        inset:0;
-        background:rgba(2,6,23,.65);
-        z-index:9999;
-      }
-
-      .mobile-overlay.is-open{ display:block; }
-
-      .mobile-panel{
-        background:#fff;
-        color:var(--ink);
-        width:100%;
-        height:100%;
-        padding:24px 18px;
-      }
-
-      .mobile-links{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        margin-top:10px;
-      }
-
-      .mobile-links a{
-        text-decoration:none;
-        color:var(--ink);
-        font-weight:800;
-        font-size:22px;
-        padding:16px 14px;
-        border-radius:14px;
-        background:#f8fafc;
-        border:1px solid #eef2f7;
+        display:none;
       }
 
       .capability-inner{ padding:36px 18px; }
@@ -278,10 +209,12 @@
         gap:10px;
         text-align:center;
       }
-    }
 
-    /* lock scroll when menu open */
-    body.menu-open{ overflow:hidden; }
+      .image-card{
+        width: 100%; /* Full width for each image on small screens */
+        margin-bottom: 20px;
+      }
+    }
   </style>
 </head>
 
@@ -312,18 +245,6 @@
     </div>
   </header>
 
-  <!-- MOBILE OVERLAY NAV (hidden on desktop by CSS above) -->
-  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
-    <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
-      <div class="mobile-links">
-        <a role="menuitem" href="index.html">Home</a>
-        <a role="menuitem" href="services.html">Services</a>
-        <a role="menuitem" href="mission.html">About</a>
-        <a role="menuitem" href="contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
-
   <!-- HERO IMAGE + MISSION -->
   <section class="hero">
     <div class="hero-content">
@@ -337,12 +258,19 @@
     </div>
   </section>
 
-  <!-- M365 IMAGE SECTION (below hero) -->
-  <section class="capability-section">
-    <div class="capability-inner">
-      <div class="capability-card">
-        <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
-      </div>
+  <!-- IMAGE SECTION: Project Management, Task Management, and Process Automation -->
+  <section class="image-section">
+    <div class="image-card">
+      <img src="projectmgmt.png" alt="Project Management">
+      <p>Project Management<br>Structured execution with clarity, accountability, and control.</p>
+    </div>
+    <div class="image-card">
+      <img src="taskmgmt.png" alt="Task Management">
+      <p>Task Management<br>Simple, intuitive tracking that drives day-to-day execution.</p>
+    </div>
+    <div class="image-card">
+      <img src="processauto.png" alt="Process Automation">
+      <p>Process Automation<br>Streamlining workflows to reduce effort and enforce consistency.</p>
     </div>
   </section>
 
@@ -363,8 +291,6 @@
     (function () {
       const toggle = document.getElementById("menuToggle");
       const overlay = document.getElementById("mobileOverlay");
-
-      if (!toggle || !overlay) return;
 
       function openMenu() {
         overlay.classList.add("is-open");
@@ -389,17 +315,14 @@
         isOpen() ? closeMenu() : openMenu();
       });
 
-      // Tap outside the panel to close (overlay background)
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeMenu();
       });
 
-      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && isOpen()) closeMenu();
       });
 
-      // Close after clicking a link
       overlay.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => closeMenu());
       });
