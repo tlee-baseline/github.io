@@ -208,17 +208,20 @@
         text-align:center;
       }
 
-      /* Mobile Menu (Ensure it's hidden by default in Desktop view) */
-      .mobile-overlay{
-        display:none;
+      nav{ 
+        display:none; /* Hide the main navigation on mobile */
       }
 
-      /* Mobile Menu toggle button */
       .menu-toggle{ 
-        display:flex; 
+        display:flex; /* Show the mobile menu button */
       }
 
-      /* Menu links in mobile view */
+      /* Mobile Menu - initially hidden */
+      .mobile-overlay{
+        display:none; /* Hide mobile menu by default */
+      }
+
+      /* Mobile links style */
       .mobile-links {
         list-style: none;
         margin: 0;
@@ -231,6 +234,10 @@
         display: block;
         text-decoration: none;
         color: #0f172a;
+      }
+
+      .mobile-overlay.is-open{
+        display:block; /* Show menu when activated */
       }
     }
   </style>
