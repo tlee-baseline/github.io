@@ -47,6 +47,7 @@
       align-items:center;
       justify-content:space-between;
       padding:9px 32px 9px 20px;
+      position:relative;
     }
 
     .logo img{
@@ -86,6 +87,34 @@
 
     nav a:hover::after{
       width:100%;
+    }
+
+    /* Mobile menu button */
+    .menu-toggle{
+      display:none;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--header-border);
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .hamburger{
+      width:18px;
+      height:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .hamburger span{
+      height:2px;
+      background:var(--ink);
+      border-radius:2px;
     }
 
     /* ================= HERO ================= */
@@ -140,9 +169,8 @@
       justify-content:center;
     }
 
-    /* DOUBLED SIZE */
     .capability-card{
-      width:min(1040px, 100%); /* 100% increase from previous 520px */
+      width:min(1040px, 100%);
       display:flex;
       justify-content:center;
       align-items:center;
@@ -206,63 +234,145 @@
         gap:10px;
         text-align:center;
       }
+
+      nav{ 
+        display:none; 
+      }
+
+      .menu-toggle{ 
+        display:flex; 
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <img src="logo.png" alt="Baseline Logo">
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.png" alt="Baseline Logo">
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="mission.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        Menu
+      </button>
     </div>
+  </header>
 
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="mission.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO IMAGE + MISSION -->
-<section class="hero">
-  <div class="hero-content">
-    <p class="mission-text">
-      Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
-    </p>
-
-    <p class="mission-text">
-      With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
-    </p>
-  </div>
-</section>
-
-<!-- M365 CUSTOM APPLICATIONS ICON SECTION -->
-<section class="capability-section">
-  <div class="capability-inner">
-    <div class="capability-card">
-      <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-left">
-      <div>Copyright © 2026 Baseline Project Systems, LLC</div>
-      <div>Alexandria, VA</div>
-    </div>
-    <div class="footer-right">
-      <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
+  <!-- FULL-SCREEN MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="mobile-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="mission.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </div>
   </div>
-</footer>
+
+  <!-- HERO IMAGE + MISSION -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="mission-text">
+        Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+      </p>
+
+      <p class="mission-text">
+        With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
+      </p>
+    </div>
+  </section>
+
+  <!-- M365 CUSTOM APPLICATIONS ICON SECTION -->
+  <section class="capability-section">
+    <div class="capability-inner">
+      <div class="capability-card">
+        <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div>Copyright © 2026 Baseline Project Systems, LLC</div>
+        <div>Alexandria, VA</div>
+      </div>
+      <div class="footer-right">
+        <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.getElementById("menuToggle");
+      const overlay = document.getElementById("mobileOverlay");
+      const header = document.getElementById("siteHeader");
+
+      function setOverlayOffset() {
+        const headerHeight = header.offsetHeight;
+        overlay.style.top = headerHeight + "px";
+      }
+
+      function openMenu() {
+        setOverlayOffset();
+        overlay.classList.add("is-open");
+        document.body.classList.add("menu-open");
+        toggle.setAttribute("aria-expanded", "true");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function closeMenu() {
+        overlay.classList.remove("is-open");
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      function isOpen() {
+        return overlay.classList.contains("is-open");
+      }
+
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (isOpen()) closeMenu();
+        else openMenu();
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeMenu();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isOpen()) closeMenu();
+      });
+
+      overlay.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => closeMenu());
+      });
+
+      window.addEventListener("resize", () => {
+        if (isOpen()) setOverlayOffset();
+      });
+    })();
+  </script>
 
 </body>
 </html>
