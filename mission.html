@@ -22,6 +22,8 @@
       --footer-bg:#1f2933;
       --footer-text:#d1d5db;
       --footer-border:#374151;
+      --section-bg:#ffffff;
+      --section-border:#eef2f7;
     }
 
     *{ box-sizing:border-box }
@@ -90,7 +92,6 @@
     nav a:hover{
       color:var(--bps-blue);
     }
-
     nav a:hover::after{
       width:100%;
     }
@@ -189,7 +190,34 @@
       overflow:hidden;
     }
 
-    /* ================= HERO / CONTENT ================= */
+    /* ================= WHITE CAPABILITY SECTION ================= */
+    .capability-section{
+      background:var(--section-bg);
+      border-bottom:1px solid var(--section-border);
+      color:var(--ink);
+    }
+
+    .capability-inner{
+      width:100%;
+      padding:28px 32px 28px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .capability-card{
+      width:min(520px, 100%);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .capability-card img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* ================= HERO (IMAGE SECTION) ================= */
     .hero{
       position:relative;
       min-height:100vh;
@@ -215,26 +243,6 @@
       position:relative;
       max-width:900px;
       width:100%;
-    }
-
-    /* ===== NEW ICON BLOCK (below header, above mission text) ===== */
-    .capability-block{
-      display:flex;
-      justify-content:center;
-      margin:0 auto 26px;
-    }
-
-    .capability-card{
-      width:min(520px, 100%);
-      padding:10px 10px 0;
-    }
-
-    .capability-card img{
-      width:100%;
-      height:auto;
-      display:block;
-      /* If your PNG has a non-transparent background, remove this line */
-      border-radius:18px;
     }
 
     .mission-text{
@@ -289,14 +297,14 @@
       .menu-toggle{ display:flex; }
       .logo img{ height:62px; }
 
+      .capability-inner{
+        padding:22px 18px;
+      }
+
       .footer-inner{
         flex-direction:column;
         gap:10px;
         text-align:center;
-      }
-
-      .capability-card{
-        width:min(420px, 100%);
       }
     }
   </style>
@@ -341,19 +349,19 @@
     </div>
   </div>
 
-  <!-- HERO / MISSION -->
+  <!-- NEW: WHITE ICON SECTION (below header, above hero) -->
+  <section class="capability-section" aria-label="Capability highlight">
+    <div class="capability-inner">
+      <div class="capability-card">
+        <!-- Put your icon file in the same folder and name it exactly like this, or update the src -->
+        <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE SECTION -->
   <section class="hero">
     <div class="hero-content">
-
-      <!-- NEW: ICON + LABEL BLOCK -->
-      <div class="capability-block">
-        <div class="capability-card">
-          <!-- Save your generated icon as: icon-m365-custom-applications.png -->
-          <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
-        </div>
-      </div>
-
-      <!-- EXISTING MISSION TEXT -->
       <p class="mission-text">
         Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
       </p>
@@ -361,7 +369,6 @@
       <p class="mission-text">
         With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
       </p>
-
     </div>
   </section>
 
@@ -385,8 +392,7 @@
       const header = document.getElementById("siteHeader");
 
       function setOverlayOffset() {
-        const headerHeight = header.offsetHeight;
-        overlay.style.top = headerHeight + "px";
+        overlay.style.top = header.offsetHeight + "px";
       }
 
       function openMenu() {
@@ -410,8 +416,7 @@
 
       toggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (isOpen()) closeMenu();
-        else openMenu();
+        isOpen() ? closeMenu() : openMenu();
       });
 
       overlay.addEventListener("click", (e) => {
