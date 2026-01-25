@@ -50,7 +50,6 @@
       align-items:center;
       justify-content:space-between;
       padding:9px 32px 9px 20px;
-      position:relative;
     }
 
     .logo img{
@@ -75,7 +74,6 @@
       color:var(--ink);
       letter-spacing:.02em;
       padding-bottom:4px;
-      transition:color .25s ease;
     }
 
     nav a::after{
@@ -89,14 +87,11 @@
       transition:width .25s ease;
     }
 
-    nav a:hover{
-      color:var(--bps-blue);
-    }
     nav a:hover::after{
       width:100%;
     }
 
-    /* Mobile menu button */
+    /* Mobile menu */
     .menu-toggle{
       display:none;
       align-items:center;
@@ -105,15 +100,8 @@
       border:1px solid var(--header-border);
       border-radius:12px;
       background:#fff;
-      color:var(--ink);
       font-weight:700;
       cursor:pointer;
-    }
-
-    .menu-toggle:focus{
-      outline:none;
-      box-shadow:0 0 0 4px rgba(11,90,166,.12);
-      border-color:rgba(11,90,166,.40);
     }
 
     .hamburger{
@@ -126,98 +114,11 @@
 
     .hamburger span{
       height:2px;
-      width:100%;
       background:var(--ink);
       border-radius:2px;
-      display:block;
     }
 
-    /* ================= FULL-SCREEN MOBILE MENU ================= */
-    .mobile-overlay{
-      display:none;
-      position:fixed;
-      left:0;
-      right:0;
-      top:0;
-      bottom:0;
-      z-index:1500;
-      background:rgba(2,6,23,.65);
-    }
-
-    .mobile-panel{
-      position:absolute;
-      left:0;
-      right:0;
-      top:0;
-      background:#ffffff;
-      color:var(--ink);
-      border-top:1px solid var(--header-border);
-      padding:18px 20px 24px;
-      min-height:100%;
-    }
-
-    .mobile-links{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .mobile-links a{
-      text-decoration:none;
-      color:var(--ink);
-      font-weight:800;
-      font-size:22px;
-      padding:16px 14px;
-      border-radius:14px;
-      background:#f8fafc;
-      border:1px solid #eef2f7;
-      transition:transform .12s ease, border-color .12s ease, background .12s ease, color .12s ease;
-    }
-
-    .mobile-links a:hover{
-      border-color:rgba(11,90,166,.35);
-      color:var(--bps-blue);
-      background:#ffffff;
-      transform:translateY(-1px);
-    }
-
-    .mobile-overlay.is-open{
-      display:block;
-    }
-
-    body.menu-open{
-      overflow:hidden;
-    }
-
-    /* ================= WHITE CAPABILITY SECTION ================= */
-    .capability-section{
-      background:var(--section-bg);
-      border-bottom:1px solid var(--section-border);
-      color:var(--ink);
-    }
-
-    .capability-inner{
-      width:100%;
-      padding:28px 32px 28px 20px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .capability-card{
-      width:min(520px, 100%);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .capability-card img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    /* ================= HERO (IMAGE SECTION) ================= */
+    /* ================= HERO ================= */
     .hero{
       position:relative;
       min-height:100vh;
@@ -242,7 +143,6 @@
     .hero-content{
       position:relative;
       max-width:900px;
-      width:100%;
     }
 
     .mission-text{
@@ -254,6 +154,33 @@
 
     .mission-text + .mission-text{
       margin-top:26px;
+    }
+
+    /* ================= WHITE CAPABILITY SECTION ================= */
+    .capability-section{
+      background:var(--section-bg);
+      border-top:1px solid var(--section-border);
+      border-bottom:1px solid var(--section-border);
+      color:var(--ink);
+    }
+
+    .capability-inner{
+      padding:40px 32px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .capability-card{
+      width:min(520px, 100%);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .capability-card img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     /* ================= FOOTER ================= */
@@ -298,7 +225,7 @@
       .logo img{ height:62px; }
 
       .capability-inner{
-        padding:22px 18px;
+        padding:28px 18px;
       }
 
       .footer-inner{
@@ -312,130 +239,65 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header id="siteHeader">
-    <div class="header-inner">
-      <div class="logo">
-        <img src="logo.png" alt="Baseline Logo">
-      </div>
-
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="mission.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay">
-        <span class="hamburger" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-        Menu
-      </button>
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <img src="logo.png" alt="Baseline Logo">
     </div>
-  </header>
 
-  <!-- FULL-SCREEN MOBILE MENU -->
-  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
-    <div class="mobile-panel" id="mobilePanel">
-      <div class="mobile-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="mission.html">About</a>
-        <a href="contact.html">Contact</a>
-      </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="mission.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button class="menu-toggle">
+      <span class="hamburger">
+        <span></span><span></span><span></span>
+      </span>
+      Menu
+    </button>
+  </div>
+</header>
+
+<!-- HERO IMAGE + MISSION -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="mission-text">
+      Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+    </p>
+
+    <p class="mission-text">
+      With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
+    </p>
+  </div>
+</section>
+
+<!-- M365 CUSTOM APPLICATIONS ICON SECTION -->
+<section class="capability-section">
+  <div class="capability-inner">
+    <div class="capability-card">
+      <!-- Ensure this file exists in your project -->
+      <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
     </div>
   </div>
+</section>
 
-  <!-- NEW: WHITE ICON SECTION (below header, above hero) -->
-  <section class="capability-section" aria-label="Capability highlight">
-    <div class="capability-inner">
-      <div class="capability-card">
-        <!-- Put your icon file in the same folder and name it exactly like this, or update the src -->
-        <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div>Copyright © 2026 Baseline Project Systems, LLC</div>
+      <div>Alexandria, VA</div>
     </div>
-  </section>
-
-  <!-- HERO IMAGE SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <p class="mission-text">
-        Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
-      </p>
-
-      <p class="mission-text">
-        With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
-      </p>
+    <div class="footer-right">
+      <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        <div>Copyright © 2026 Baseline Project Systems, LLC</div>
-        <div>Alexandria, VA</div>
-      </div>
-      <div class="footer-right">
-        <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      const toggle = document.getElementById("menuToggle");
-      const overlay = document.getElementById("mobileOverlay");
-      const header = document.getElementById("siteHeader");
-
-      function setOverlayOffset() {
-        overlay.style.top = header.offsetHeight + "px";
-      }
-
-      function openMenu() {
-        setOverlayOffset();
-        overlay.classList.add("is-open");
-        document.body.classList.add("menu-open");
-        toggle.setAttribute("aria-expanded", "true");
-        overlay.setAttribute("aria-hidden", "false");
-      }
-
-      function closeMenu() {
-        overlay.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
-        toggle.setAttribute("aria-expanded", "false");
-        overlay.setAttribute("aria-hidden", "true");
-      }
-
-      function isOpen() {
-        return overlay.classList.contains("is-open");
-      }
-
-      toggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        isOpen() ? closeMenu() : openMenu();
-      });
-
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeMenu();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && isOpen()) closeMenu();
-      });
-
-      overlay.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => closeMenu());
-      });
-
-      window.addEventListener("resize", () => {
-        if (isOpen()) setOverlayOffset();
-      });
-    })();
-  </script>
+  </div>
+</footer>
 
 </body>
 </html>
