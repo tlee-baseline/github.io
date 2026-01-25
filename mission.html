@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Mission | Baseline</title>
 
-  <meta name="description" content="Baseline modernizes the enterprise through intuitive applications, governed data, and enterprise reporting for federal government clients." />
+  <meta name="description" content="Baseline modernizes the enterprise through intuitive applications, governed data management, and enterprise reporting for federal government clients." />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -19,9 +19,11 @@
       --ink:#0f172a;
       --muted:#475569;
       --header-border:#e5e7eb;
+      --panel-border:#e2e8f0;
+      --panel-shadow: 0 10px 30px rgba(2, 6, 23, 0.14);
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
 
     body{
       margin:0;
@@ -39,27 +41,29 @@
       border-bottom:1px solid var(--header-border);
     }
 
-.header-inner{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:9px 32px 9px 20px; /* 50% reduced vertical padding */
-}
-
+    .header-inner{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:9px 32px 9px 20px;
+      position:relative;
+    }
 
     .logo img{
-      height:75px; /* 50% larger logo */
+      height:75px;
       width:auto;
       display:block;
     }
 
+    /* Desktop navigation */
     nav ul{
       list-style:none;
       margin:0;
       padding:0;
       display:flex;
       gap:36px;
+      align-items:center;
     }
 
     nav a{
@@ -89,6 +93,72 @@
 
     nav a:hover::after{
       width:100%;
+    }
+
+    /* Mobile menu button */
+    .menu-toggle{
+      display:none;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--panel-border);
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .hamburger{
+      width:18px;
+      height:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .hamburger span{
+      height:2px;
+      width:100%;
+      background:var(--ink);
+      border-radius:2px;
+    }
+
+    /* Mobile dropdown */
+    .mobile-panel{
+      display:none;
+      position:absolute;
+      right:20px;
+      top:100%;
+      margin-top:10px;
+      width:min(320px, calc(100vw - 40px));
+      background:#fff;
+      border:1px solid var(--panel-border);
+      border-radius:16px;
+      box-shadow:var(--panel-shadow);
+      overflow:hidden;
+    }
+
+    .mobile-panel a{
+      display:block;
+      padding:14px 16px;
+      color:var(--ink);
+      text-decoration:none;
+      font-weight:600;
+      border-bottom:1px solid #f1f5f9;
+    }
+
+    .mobile-panel a:last-child{
+      border-bottom:none;
+    }
+
+    .mobile-panel a:hover{
+      background:#f8fafc;
+      color:var(--bps-blue);
+    }
+
+    .mobile-panel.is-open{
+      display:block;
     }
 
     /* ================= HERO ================= */
@@ -128,14 +198,11 @@
       margin-top:26px;
     }
 
+    /* ================= RESPONSIVE ================= */
     @media (max-width:768px){
-      nav ul{
-        gap:22px;
-      }
-
-      .logo img{
-        height:62px;
-      }
+      nav{ display:none; }
+      .menu-toggle{ display:flex; }
+      .logo img{ height:62px; }
     }
   </style>
 </head>
@@ -148,7 +215,8 @@
       <div class="logo">
         <img src="logo.png" alt="Baseline Logo">
       </div>
-      <nav>
+
+      <nav aria-label="Primary navigation">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
@@ -156,10 +224,24 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">
+        <span class="hamburger">
+          <span></span><span></span><span></span>
+        </span>
+        Menu
+      </button>
+
+      <div class="mobile-panel" id="mobilePanel">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="mission.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </div>
   </header>
 
-  <!-- HERO / MISSION -->
+  <!-- MISSION CONTENT -->
   <section class="hero">
     <div class="hero-content">
       <p class="mission-text">
@@ -171,6 +253,24 @@
       </p>
     </div>
   </section>
+
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const panel = document.getElementById("mobilePanel");
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      panel.classList.toggle("is-open");
+    });
+
+    document.addEventListener("click", () => {
+      panel.classList.remove("is-open");
+    });
+
+    panel.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  </script>
 
 </body>
 </html>
