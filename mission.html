@@ -29,6 +29,40 @@
       background:#000;
     }
 
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #1a1a1a;
+    }
+
+    .header img {
+      height: 50px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li {
+      font-size: 18px;
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--bps-blue);
+    }
+
     /* HERO SECTION */
     .hero{
       position:relative;
@@ -80,6 +114,15 @@
       color:var(--muted);
     }
 
+    /* Smaller mission text */
+    .mission-text {
+      font-size: clamp(12px, 1.5vw, 16px);
+      color: var(--muted);
+      margin-top: 20px;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
     /* Optional subtle divider */
     .divider{
       margin:28px auto 0;
@@ -100,10 +143,29 @@
         padding:28px 16px;
       }
     }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 15px;
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- HEADER SECTION -->
+  <header class="header">
+    <img src="your-logo.png" alt="Baseline Logo">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="mission.html">Mission</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-content">
       <h1>We modernize the enterprise.</h1>
@@ -113,6 +175,12 @@
       <p>
         Baseline is a premier consulting firm that specializes in application development,
         data analytics, and process automation.
+      </p>
+
+      <p class="mission-text">
+        Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+        <br><br>
+        With a focus on ease of use and rapid deployment, we deliver solutions that exceed client expectations from the start, continuously refining and enhancing them through ongoing iteration. Our approach combines beautifully crafted, modern UI/UX design with powerful, enterprise-grade reporting, ensuring seamless integration across all organizational levels—from frontline management to executive leadership.
       </p>
     </div>
   </section>
