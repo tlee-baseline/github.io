@@ -130,75 +130,6 @@
     .mobile-overlay{ display:none; }
     .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
 
-    /* ================= CAPABILITIES (WHITE) ================= */
-    .capability-section{
-      background:#ffffff;
-      border-bottom:1px solid var(--section-border);
-    }
-
-    .capability-row{
-      padding:20px 32px;
-      display:flex;
-      justify-content:space-between;
-      gap:32px;
-      border-top:1px solid var(--section-border); /* subtle divider */
-    }
-
-    .image-card{
-      width:32%;
-      text-align:center;
-      color:var(--ink);
-      background:#ffffff;
-      border:1px solid var(--card-border);
-      border-radius:18px;
-      padding:18px 14px;
-      opacity:0;
-      transform:translateY(14px);
-      transition:
-        opacity .6s ease,
-        transform .6s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-    }
-
-    .image-card.is-visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .image-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 14px 30px rgba(15,23,42,.12);
-      border-color:rgba(11,90,166,.22);
-    }
-
-    .image-card img{
-      width:50%;
-      height:auto;
-      display:block;
-      margin:0 auto;
-      transition:transform .25s ease;
-    }
-
-    .image-card:hover img{
-      transform:translateY(-2px);
-    }
-
-    .image-card h3{
-      margin:14px 0 6px;
-      font-size:17px;
-      font-weight:700;
-      letter-spacing:.02em;
-      color:var(--bps-blue);
-    }
-
-    .image-card p{
-      margin:0;
-      font-size:14.5px;
-      line-height:1.55;
-      color:var(--muted);
-    }
-
     /* ================= HERO ================= */
     .hero{
       position:relative;
@@ -234,6 +165,80 @@
     }
 
     .mission-text + .mission-text{ margin-top:26px; }
+
+    /* ================= CAPABILITIES (BOTTOM) ================= */
+    .capability-section{
+      background:#ffffff;
+      border-top:1px solid var(--section-border);
+      border-bottom:1px solid var(--section-border);
+    }
+
+    .capability-row{
+      padding:20px 32px;
+      display:flex;
+      justify-content:space-between;
+      gap:32px;
+    }
+
+    .capability-row + .capability-row{
+      border-top:1px solid var(--section-border); /* subtle divider between rows */
+    }
+
+    .image-card{
+      width:32%;
+      text-align:center;
+      color:var(--ink);
+      background:#ffffff;
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      padding:18px 14px;
+      opacity:0;
+      transform:translateY(14px);
+      transition:
+        opacity .6s ease,
+        transform .6s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+    }
+
+    .image-card.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .image-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 30px rgba(15,23,42,.12);
+      border-color:rgba(11,90,166,.22);
+    }
+
+    /* icons 50% smaller */
+    .image-card img{
+      width:50%;
+      height:auto;
+      display:block;
+      margin:0 auto;
+      transition:transform .25s ease;
+    }
+
+    .image-card:hover img{
+      transform:translateY(-2px);
+    }
+
+    .image-card h3{
+      margin:14px 0 6px;
+      font-size:17px;
+      font-weight:700;
+      letter-spacing:.02em;
+      color:var(--bps-blue);
+    }
+
+    .image-card p{
+      margin:0;
+      font-size:14.5px;
+      line-height:1.55;
+      color:var(--muted);
+    }
 
     /* ================= FOOTER ================= */
     footer{
@@ -276,14 +281,15 @@
       nav{ display:none; }
       .menu-toggle{ display:flex; }
 
-      /* Mobile overlay enabled only on mobile */
+      /* Enable overlay ONLY on mobile */
       .mobile-overlay{
-        display:none;               /* hidden until opened */
+        display:none;
         position:fixed;
         inset:0;
         background:rgba(2,6,23,.65);
         z-index:9999;
       }
+
       .mobile-overlay.is-open{ display:block; }
 
       .mobile-panel{
@@ -312,12 +318,12 @@
         border:1px solid #eef2f7;
       }
 
-      /* Capability rows stack */
       .capability-row{
         flex-direction:column;
         padding:18px 18px;
         gap:18px;
       }
+
       .image-card{ width:100%; }
       .image-card img{ width:45%; }
 
@@ -372,29 +378,6 @@
     </div>
   </div>
 
-  <!-- ROW 1 (ABOVE HERO) -->
-  <section class="capability-section" aria-label="Capabilities">
-    <div class="capability-row">
-      <div class="image-card">
-        <img src="projectmgmt.png" alt="Project Management">
-        <h3>Project Management</h3>
-        <p>Structured execution with clarity, accountability, and control.</p>
-      </div>
-
-      <div class="image-card">
-        <img src="taskmgmt.png" alt="Task Management">
-        <h3>Task Management</h3>
-        <p>Simple, intuitive tracking that drives day-to-day execution.</p>
-      </div>
-
-      <div class="image-card">
-        <img src="processauto.png" alt="Process Automation">
-        <h3>Process Automation</h3>
-        <p>Streamlining workflows to reduce effort and enforce consistency.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- HERO IMAGE + MISSION -->
   <section class="hero">
     <div class="hero-content">
@@ -408,13 +391,36 @@
     </div>
   </section>
 
-  <!-- ROW 2 (BELOW HERO) -->
-  <section class="capability-section" aria-label="Additional capabilities">
+  <!-- CAPABILITIES (BOTTOM) IN YOUR SPECIFIED ORDER -->
+  <section class="capability-section" aria-label="Capabilities">
+
+    <!-- Row 1: M365, Project, Process Automation -->
     <div class="capability-row">
       <div class="image-card">
         <img src="m365.png" alt="M365 Custom Applications">
         <h3>M365 Custom Applications</h3>
         <p>Purpose-built tools aligned to how your teams work.</p>
+      </div>
+
+      <div class="image-card">
+        <img src="projectmgmt.png" alt="Project Management">
+        <h3>Project Management</h3>
+        <p>Structured execution with clarity, accountability, and control.</p>
+      </div>
+
+      <div class="image-card">
+        <img src="processauto.png" alt="Process Automation">
+        <h3>Process Automation</h3>
+        <p>Streamlining workflows to reduce effort and enforce consistency.</p>
+      </div>
+    </div>
+
+    <!-- Row 2: Enterprise Data, Enterprise Dashboards, Task -->
+    <div class="capability-row">
+      <div class="image-card">
+        <img src="Enterprisedata.png" alt="Enterprise Data &amp; Analytics">
+        <h3>Enterprise Data &amp; Analytics</h3>
+        <p>Trusted data transformed into actionable intelligence.</p>
       </div>
 
       <div class="image-card">
@@ -424,11 +430,12 @@
       </div>
 
       <div class="image-card">
-        <img src="Enterprisedata.png" alt="Enterprise Data &amp; Analytics">
-        <h3>Enterprise Data &amp; Analytics</h3>
-        <p>Trusted data transformed into actionable intelligence.</p>
+        <img src="taskmgmt.png" alt="Task Management">
+        <h3>Task Management</h3>
+        <p>Simple, intuitive tracking that drives day-to-day execution.</p>
       </div>
     </div>
+
   </section>
 
   <!-- FOOTER -->
@@ -445,7 +452,7 @@
   </footer>
 
   <script>
-    // Mobile menu toggle (copied from your known-good page)
+    // Mobile menu toggle
     (function () {
       const toggle = document.getElementById("menuToggle");
       const overlay = document.getElementById("mobileOverlay");
