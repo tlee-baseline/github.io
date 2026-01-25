@@ -37,9 +37,6 @@
 
     /* ================= HEADER ================= */
     header{
-      position:sticky;
-      top:0;
-      z-index:2000;
       background:#ffffff;
       border-bottom:1px solid var(--header-border);
     }
@@ -91,33 +88,6 @@
       width:100%;
     }
 
-    /* Mobile menu */
-    .menu-toggle{
-      display:none;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--header-border);
-      border-radius:12px;
-      background:#fff;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .hamburger{
-      width:18px;
-      height:12px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .hamburger span{
-      height:2px;
-      background:var(--ink);
-      border-radius:2px;
-    }
-
     /* ================= HERO ================= */
     .hero{
       position:relative;
@@ -165,13 +135,14 @@
     }
 
     .capability-inner{
-      padding:40px 32px;
+      padding:48px 32px;
       display:flex;
       justify-content:center;
     }
 
+    /* DOUBLED SIZE */
     .capability-card{
-      width:min(520px, 100%);
+      width:min(1040px, 100%); /* 100% increase from previous 520px */
       display:flex;
       justify-content:center;
       align-items:center;
@@ -220,12 +191,14 @@
 
     /* ================= RESPONSIVE ================= */
     @media (max-width:768px){
-      nav{ display:none; }
-      .menu-toggle{ display:flex; }
       .logo img{ height:62px; }
 
       .capability-inner{
-        padding:28px 18px;
+        padding:36px 18px;
+      }
+
+      .capability-card{
+        width:100%;
       }
 
       .footer-inner{
@@ -253,13 +226,6 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-
-    <button class="menu-toggle">
-      <span class="hamburger">
-        <span></span><span></span><span></span>
-      </span>
-      Menu
-    </button>
   </div>
 </header>
 
@@ -280,7 +246,6 @@
 <section class="capability-section">
   <div class="capability-inner">
     <div class="capability-card">
-      <!-- Ensure this file exists in your project -->
       <img src="icon-m365-custom-applications.png" alt="M365 Custom Applications">
     </div>
   </div>
