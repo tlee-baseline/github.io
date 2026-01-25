@@ -18,11 +18,13 @@
       --bps-blue:#0b5aa6;
       --ink:#0f172a;
       --muted:#475569;
-      --header-border:#e5e7eb;
 
+      --header-border:#e5e7eb;
       --footer-bg:#1f2933;
       --footer-text:#d1d5db;
       --footer-border:#374151;
+
+      --section-border:#eef2f7;
     }
 
     *{ box-sizing:border-box }
@@ -55,7 +57,6 @@
       display:block;
     }
 
-    /* Desktop nav */
     nav ul{
       list-style:none;
       margin:0;
@@ -87,46 +88,6 @@
 
     nav a:hover::after{ width:100%; }
 
-    /* Mobile menu button: hidden by default (desktop) */
-    .menu-toggle{
-      display:none;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--header-border);
-      border-radius:12px;
-      background:#fff;
-      color:var(--ink);
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .menu-toggle:focus{
-      outline:none;
-      box-shadow:0 0 0 4px rgba(11,90,166,.12);
-      border-color:rgba(11,90,166,.40);
-    }
-
-    .hamburger{
-      width:18px;
-      height:12px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .hamburger span{
-      height:2px;
-      width:100%;
-      background:var(--ink);
-      border-radius:2px;
-      display:block;
-    }
-
-    /* ================= MOBILE OVERLAY (default hidden everywhere) ================= */
-    .mobile-overlay{ display:none; }
-    .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
-
     /* ================= HERO ================= */
     .hero{
       position:relative;
@@ -135,9 +96,7 @@
       align-items:center;
       justify-content:center;
       padding:40px 20px;
-      background-image:url("hero-military-dashboard.jpg");
-      background-size:cover;
-      background-position:center;
+      background:url("hero-military-dashboard.jpg") center / cover no-repeat;
       text-align:center;
     }
 
@@ -146,7 +105,6 @@
       position:absolute;
       inset:0;
       background:rgba(2,6,23,.72);
-      backdrop-filter:blur(1px);
     }
 
     .hero-content{
@@ -163,19 +121,38 @@
 
     .mission-text + .mission-text{ margin-top:26px; }
 
-    /* ================= ICON SECTION (WHITE / COMPACT) ================= */
+    /* ================= ICON SECTION ================= */
     .image-section{
       background:#ffffff;
-      padding:20px 32px;          /* compact height */
+      padding:20px 32px;
       display:flex;
       justify-content:space-between;
       gap:32px;
+      border-top:1px solid var(--section-border); /* (1) subtle divider */
     }
 
+    /* (3) animate-in on scroll: start hidden */
     .image-card{
       width:32%;
       text-align:center;
       color:var(--ink);
+      background:#ffffff;
+      border:1px solid #eef2f7;
+      border-radius:18px;
+      padding:18px 14px;
+      opacity:0;
+      transform:translateY(14px);
+      transition:
+        opacity .6s ease,
+        transform .6s ease,
+        box-shadow .25s ease,
+        border-color .25s ease; /* (2) hover lift feel */
+    }
+
+    /* (3) visible state when revealed */
+    .image-card.is-visible{
+      opacity:1;
+      transform:translateY(0);
     }
 
     /* icons 50% smaller */
@@ -184,19 +161,32 @@
       height:auto;
       display:block;
       margin:0 auto;
+      transition:transform .25s ease; /* subtle polish on hover */
+    }
+
+    /* (2) hover lift + shadow */
+    .image-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 30px rgba(15,23,42,.12);
+      border-color:rgba(11,90,166,.22);
+    }
+
+    .image-card:hover img{
+      transform:translateY(-2px);
     }
 
     .image-card h3{
       margin:14px 0 6px;
-      font-size:18px;
+      font-size:17px;
       font-weight:700;
-      letter-spacing:.01em;
+      letter-spacing:.02em;
+      color:var(--bps-blue);
     }
 
     .image-card p{
       margin:0;
-      font-size:15px;
-      line-height:1.5;
+      font-size:14.5px;
+      line-height:1.55;
       color:var(--muted);
     }
 
@@ -235,54 +225,13 @@
 
     /* ================= RESPONSIVE ================= */
     @media (max-width:768px){
+      nav{ display:none; }
       .logo img{ height:62px; }
 
-      /* Hide desktop nav, show menu button */
-      nav{ display:none; }
-      .menu-toggle{ display:flex; }
-
-      /* Enable overlay ONLY on mobile */
-      .mobile-overlay{
-        display:none;               /* hidden until opened */
-        position:fixed;
-        inset:0;
-        background:rgba(2,6,23,.65);
-        z-index:9999;
-      }
-
-      .mobile-overlay.is-open{ display:block; }
-
-      .mobile-panel{
-        background:#fff;
-        color:var(--ink);
-        width:100%;
-        height:100%;
-        padding:24px 18px;
-      }
-
-      .mobile-links{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        margin-top:10px;
-      }
-
-      .mobile-links a{
-        text-decoration:none;
-        color:var(--ink);
-        font-weight:800;
-        font-size:22px;
-        padding:16px 14px;
-        border-radius:14px;
-        background:#f8fafc;
-        border:1px solid #eef2f7;
-      }
-
-      /* icons section stacks on mobile */
       .image-section{
         flex-direction:column;
         padding:18px 18px;
-        gap:24px;
+        gap:18px;
       }
 
       .image-card{
@@ -299,141 +248,92 @@
         text-align:center;
       }
     }
-
-    /* lock scroll when menu open */
-    body.menu-open{ overflow:hidden; }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER (not sticky) -->
-  <header>
-    <div class="header-inner">
-      <div class="logo">
-        <img src="logo.png" alt="Baseline Logo">
-      </div>
-
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="mission.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay">
-        <span class="hamburger" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-        Menu
-      </button>
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <img src="logo.png" alt="Baseline Logo">
     </div>
-  </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="mission.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <!-- MOBILE OVERLAY NAV -->
-  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
-    <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
-      <div class="mobile-links">
-        <a role="menuitem" href="index.html">Home</a>
-        <a role="menuitem" href="services.html">Services</a>
-        <a role="menuitem" href="mission.html">About</a>
-        <a role="menuitem" href="contact.html">Contact</a>
-      </div>
-    </div>
+<section class="hero">
+  <div class="hero-content">
+    <p class="mission-text">
+      Baseline specializes in developing intuitive, user-centric applications, enterprise data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+    </p>
+
+    <p class="mission-text">
+      With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
+    </p>
+  </div>
+</section>
+
+<section class="image-section" aria-label="Capabilities">
+  <div class="image-card">
+    <img src="projectmgmt.png" alt="Project Management">
+    <h3>Project Management</h3>
+    <p>Structured execution with clarity, accountability, and control.</p>
   </div>
 
-  <!-- HERO IMAGE + MISSION -->
-  <section class="hero">
-    <div class="hero-content">
-      <p class="mission-text">
-        Baseline specializes in developing intuitive, user-centric applications, enterprise data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
-      </p>
+  <div class="image-card">
+    <img src="taskmgmt.png" alt="Task Management">
+    <h3>Task Management</h3>
+    <p>Simple, intuitive tracking that drives day-to-day execution.</p>
+  </div>
 
-      <p class="mission-text">
-        With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
-      </p>
+  <div class="image-card">
+    <img src="processauto.png" alt="Process Automation">
+    <h3>Process Automation</h3>
+    <p>Streamlining workflows to reduce effort and enforce consistency.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div>Copyright © 2026 Baseline Project Systems, LLC</div>
+      <div>Alexandria, VA</div>
     </div>
-  </section>
-
-  <!-- ICON SECTION (below hero) -->
-  <section class="image-section">
-    <div class="image-card">
-      <img src="projectmgmt.png" alt="Project Management">
-      <h3>Project Management</h3>
-      <p>Structured execution with clarity, accountability, and control.</p>
+    <div class="footer-right">
+      <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
     </div>
+  </div>
+</footer>
 
-    <div class="image-card">
-      <img src="taskmgmt.png" alt="Task Management">
-      <h3>Task Management</h3>
-      <p>Simple, intuitive tracking that drives day-to-day execution.</p>
-    </div>
+<script>
+  // (3) Animate cards in on scroll using IntersectionObserver
+  (function () {
+    const cards = document.querySelectorAll(".image-card");
+    if (!("IntersectionObserver" in window) || !cards.length) {
+      cards.forEach(c => c.classList.add("is-visible"));
+      return;
+    }
 
-    <div class="image-card">
-      <img src="processauto.png" alt="Process Automation">
-      <h3>Process Automation</h3>
-      <p>Streamlining workflows to reduce effort and enforce consistency.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        <div>Copyright © 2026 Baseline Project Systems, LLC</div>
-        <div>Alexandria, VA</div>
-      </div>
-      <div class="footer-right">
-        <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      const toggle = document.getElementById("menuToggle");
-      const overlay = document.getElementById("mobileOverlay");
-
-      if (!toggle || !overlay) return;
-
-      function openMenu() {
-        overlay.classList.add("is-open");
-        document.body.classList.add("menu-open");
-        toggle.setAttribute("aria-expanded", "true");
-        overlay.setAttribute("aria-hidden", "false");
-      }
-
-      function closeMenu() {
-        overlay.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
-        toggle.setAttribute("aria-expanded", "false");
-        overlay.setAttribute("aria-hidden", "true");
-      }
-
-      function isOpen() {
-        return overlay.classList.contains("is-open");
-      }
-
-      toggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        isOpen() ? closeMenu() : openMenu();
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
       });
+    }, { threshold: 0.2 });
 
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeMenu();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && isOpen()) closeMenu();
-      });
-
-      overlay.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => closeMenu());
-      });
-    })();
-  </script>
+    cards.forEach((c) => obs.observe(c));
+  })();
+</script>
 
 </body>
 </html>
