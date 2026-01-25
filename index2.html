@@ -18,8 +18,8 @@
       --bps-blue:#0b5aa6;
       --ink:#0f172a;
       --muted:#475569;
-
       --header-border:#e5e7eb;
+
       --footer-bg:#1f2933;
       --footer-text:#d1d5db;
       --footer-border:#374151;
@@ -42,10 +42,11 @@
     }
 
     .header-inner{
+      width:100%;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:10px 32px 10px 20px;
+      padding:9px 32px 9px 20px;
     }
 
     .logo img{
@@ -54,19 +55,22 @@
       display:block;
     }
 
+    /* Desktop nav */
     nav ul{
       list-style:none;
       margin:0;
       padding:0;
       display:flex;
       gap:36px;
+      align-items:center;
     }
 
     nav a{
+      position:relative;
       text-decoration:none;
       font-weight:600;
       color:var(--ink);
-      position:relative;
+      letter-spacing:.02em;
       padding-bottom:4px;
     }
 
@@ -75,13 +79,53 @@
       position:absolute;
       left:0;
       bottom:0;
-      width:0;
+      width:0%;
       height:2px;
       background:var(--bps-blue);
       transition:width .25s ease;
     }
 
     nav a:hover::after{ width:100%; }
+
+    /* Mobile menu button: hidden by default (desktop) */
+    .menu-toggle{
+      display:none;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--header-border);
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .menu-toggle:focus{
+      outline:none;
+      box-shadow:0 0 0 4px rgba(11,90,166,.12);
+      border-color:rgba(11,90,166,.40);
+    }
+
+    .hamburger{
+      width:18px;
+      height:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .hamburger span{
+      height:2px;
+      width:100%;
+      background:var(--ink);
+      border-radius:2px;
+      display:block;
+    }
+
+    /* ================= MOBILE OVERLAY (default hidden everywhere) ================= */
+    .mobile-overlay{ display:none; }
+    .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
 
     /* ================= HERO ================= */
     .hero{
@@ -91,7 +135,9 @@
       align-items:center;
       justify-content:center;
       padding:40px 20px;
-      background:url("hero-military-dashboard.jpg") center / cover no-repeat;
+      background-image:url("hero-military-dashboard.jpg");
+      background-size:cover;
+      background-position:center;
       text-align:center;
     }
 
@@ -100,6 +146,7 @@
       position:absolute;
       inset:0;
       background:rgba(2,6,23,.72);
+      backdrop-filter:blur(1px);
     }
 
     .hero-content{
@@ -114,14 +161,12 @@
       margin:0;
     }
 
-    .mission-text + .mission-text{
-      margin-top:26px;
-    }
+    .mission-text + .mission-text{ margin-top:26px; }
 
-    /* ================= IMAGE SECTION (WHITE / COMPACT) ================= */
+    /* ================= ICON SECTION (WHITE / COMPACT) ================= */
     .image-section{
       background:#ffffff;
-      padding:20px 32px;
+      padding:20px 32px;          /* compact height */
       display:flex;
       justify-content:space-between;
       gap:32px;
@@ -133,7 +178,7 @@
       color:var(--ink);
     }
 
-    /* 🔽 IMAGE SIZE REDUCED BY 50% HERE */
+    /* icons 50% smaller */
     .image-card img{
       width:50%;
       height:auto;
@@ -145,6 +190,7 @@
       margin:14px 0 6px;
       font-size:18px;
       font-weight:700;
+      letter-spacing:.01em;
     }
 
     .image-card p{
@@ -171,6 +217,7 @@
       padding:0 32px 0 20px;
       color:var(--footer-text);
       font-size:14px;
+      line-height:1.6;
     }
 
     .footer-left{
@@ -188,10 +235,50 @@
 
     /* ================= RESPONSIVE ================= */
     @media (max-width:768px){
-      nav{ display:none; }
-
       .logo img{ height:62px; }
 
+      /* Hide desktop nav, show menu button */
+      nav{ display:none; }
+      .menu-toggle{ display:flex; }
+
+      /* Enable overlay ONLY on mobile */
+      .mobile-overlay{
+        display:none;               /* hidden until opened */
+        position:fixed;
+        inset:0;
+        background:rgba(2,6,23,.65);
+        z-index:9999;
+      }
+
+      .mobile-overlay.is-open{ display:block; }
+
+      .mobile-panel{
+        background:#fff;
+        color:var(--ink);
+        width:100%;
+        height:100%;
+        padding:24px 18px;
+      }
+
+      .mobile-links{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:10px;
+      }
+
+      .mobile-links a{
+        text-decoration:none;
+        color:var(--ink);
+        font-weight:800;
+        font-size:22px;
+        padding:16px 14px;
+        border-radius:14px;
+        background:#f8fafc;
+        border:1px solid #eef2f7;
+      }
+
+      /* icons section stacks on mobile */
       .image-section{
         flex-direction:column;
         padding:18px 18px;
@@ -203,7 +290,7 @@
       }
 
       .image-card img{
-        width:45%; /* slightly smaller on mobile */
+        width:45%;
       }
 
       .footer-inner{
@@ -212,70 +299,141 @@
         text-align:center;
       }
     }
+
+    /* lock scroll when menu open */
+    body.menu-open{ overflow:hidden; }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <img src="logo.png" alt="Baseline Logo">
+  <!-- HEADER (not sticky) -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.png" alt="Baseline Logo">
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="mission.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        Menu
+      </button>
     </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="mission.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <p class="mission-text">
-      Baseline specializes in developing intuitive, user-centric applications, enterprise data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
-    </p>
-
-    <p class="mission-text">
-      With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
-    </p>
-  </div>
-</section>
-
-<section class="image-section">
-  <div class="image-card">
-    <img src="projectmgmt.png" alt="Project Management">
-    <h3>Project Management</h3>
-    <p>Structured execution with clarity, accountability, and control.</p>
-  </div>
-
-  <div class="image-card">
-    <img src="taskmgmt.png" alt="Task Management">
-    <h3>Task Management</h3>
-    <p>Simple, intuitive tracking that drives day-to-day execution.</p>
-  </div>
-
-  <div class="image-card">
-    <img src="processauto.png" alt="Process Automation">
-    <h3>Process Automation</h3>
-    <p>Streamlining workflows to reduce effort and enforce consistency.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-left">
-      <div>Copyright © 2026 Baseline Project Systems, LLC</div>
-      <div>Alexandria, VA</div>
-    </div>
-    <div class="footer-right">
-      <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
+  <!-- MOBILE OVERLAY NAV -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+    <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
+      <div class="mobile-links">
+        <a role="menuitem" href="index.html">Home</a>
+        <a role="menuitem" href="services.html">Services</a>
+        <a role="menuitem" href="mission.html">About</a>
+        <a role="menuitem" href="contact.html">Contact</a>
+      </div>
     </div>
   </div>
-</footer>
+
+  <!-- HERO IMAGE + MISSION -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="mission-text">
+        Baseline specializes in developing intuitive, user-centric applications, enterprise data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+      </p>
+
+      <p class="mission-text">
+        With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
+      </p>
+    </div>
+  </section>
+
+  <!-- ICON SECTION (below hero) -->
+  <section class="image-section">
+    <div class="image-card">
+      <img src="projectmgmt.png" alt="Project Management">
+      <h3>Project Management</h3>
+      <p>Structured execution with clarity, accountability, and control.</p>
+    </div>
+
+    <div class="image-card">
+      <img src="taskmgmt.png" alt="Task Management">
+      <h3>Task Management</h3>
+      <p>Simple, intuitive tracking that drives day-to-day execution.</p>
+    </div>
+
+    <div class="image-card">
+      <img src="processauto.png" alt="Process Automation">
+      <h3>Process Automation</h3>
+      <p>Streamlining workflows to reduce effort and enforce consistency.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div>Copyright © 2026 Baseline Project Systems, LLC</div>
+        <div>Alexandria, VA</div>
+      </div>
+      <div class="footer-right">
+        <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.getElementById("menuToggle");
+      const overlay = document.getElementById("mobileOverlay");
+
+      if (!toggle || !overlay) return;
+
+      function openMenu() {
+        overlay.classList.add("is-open");
+        document.body.classList.add("menu-open");
+        toggle.setAttribute("aria-expanded", "true");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function closeMenu() {
+        overlay.classList.remove("is-open");
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      function isOpen() {
+        return overlay.classList.contains("is-open");
+      }
+
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isOpen() ? closeMenu() : openMenu();
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeMenu();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isOpen()) closeMenu();
+      });
+
+      overlay.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => closeMenu());
+      });
+    })();
+  </script>
 
 </body>
 </html>
