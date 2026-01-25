@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Enterprise Modernization | Baseline Project Systems</title>
+  <title>Our Mission | Baseline</title>
 
-  <meta name="description" content="Baseline Project Systems modernizes the enterprise through application development, data analytics, and process automation." />
+  <meta name="description" content="Baseline modernizes the enterprise through intuitive applications, governed data, and enterprise reporting for federal government clients." />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -16,8 +16,10 @@
   <style>
     :root{
       --bps-blue:#0b5aa6;
-      --ink:#f9fafb;
-      --muted:#e5e7eb;
+      --ink:#0f172a;
+      --muted:#475569;
+      --header-border:#e5e7eb;
+      --bg-dark:#020617;
     }
 
     *{box-sizing:border-box}
@@ -25,45 +27,76 @@
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color:var(--ink);
+      color:#f9fafb;
       background:#000;
     }
 
-    /* HEADER */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: #1a1a1a;
+    /* ================= HEADER ================= */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#ffffff;
+      border-bottom:1px solid var(--header-border);
     }
 
-    .header img {
-      height: 50px;
+    .header-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:18px 32px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
+    .logo{
+      display:flex;
+      align-items:center;
     }
 
-    .nav-links li {
-      font-size: 18px;
+    .logo img{
+      height:75px; /* 50% larger than a standard ~50px logo */
+      width:auto;
     }
 
-    .nav-links a {
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
+    nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:36px;
     }
 
-    .nav-links a:hover {
-      color: var(--bps-blue);
+    nav a{
+      position:relative;
+      text-decoration:none;
+      font-weight:600;
+      color:var(--ink);
+      letter-spacing:.02em;
+      padding-bottom:4px;
+      transition:color .25s ease;
     }
 
-    /* HERO SECTION */
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0%;
+      height:2px;
+      background:var(--bps-blue);
+      transition:width .25s ease;
+    }
+
+    nav a:hover{
+      color:var(--bps-blue);
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    /* ================= HERO ================= */
     .hero{
       position:relative;
       min-height:100vh;
@@ -72,25 +105,17 @@
       justify-content:center;
       text-align:center;
       padding:40px 20px;
-
-      /* Background image */
       background-image:url("hero-military-dashboard.jpg");
       background-size:cover;
       background-position:center;
-      background-repeat:no-repeat;
     }
 
-    /* Fade / dark overlay */
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(
-          rgba(2,6,23,0.70),
-          rgba(2,6,23,0.70)
-        );
-      backdrop-filter: blur(1px);
+      background:rgba(2,6,23,.72);
+      backdrop-filter:blur(1px);
     }
 
     .hero-content{
@@ -100,30 +125,12 @@
 
     .hero h1{
       margin:0;
-      font-size:clamp(32px, 5vw, 56px);
+      font-size:clamp(34px,5vw,56px);
       font-weight:700;
-      letter-spacing:.02em;
+      letter-spacing:.03em;
       line-height:1.15;
     }
 
-    .hero p{
-      margin:18px auto 0;
-      max-width:720px;
-      font-size:clamp(16px, 2.2vw, 20px);
-      line-height:1.6;
-      color:var(--muted);
-    }
-
-    /* Smaller mission text */
-    .mission-text {
-      font-size: clamp(12px, 1.5vw, 16px);
-      color: var(--muted);
-      margin-top: 20px;
-      max-width: 800px;
-      line-height: 1.6;
-    }
-
-    /* Optional subtle divider */
     .divider{
       margin:28px auto 0;
       width:120px;
@@ -134,51 +141,68 @@
         var(--bps-blue),
         transparent
       );
-      opacity:.9;
     }
 
-    /* Mobile spacing */
-    @media (max-width: 720px){
-      .hero{
-        padding:28px 16px;
+    .hero p{
+      margin:20px auto 0;
+      max-width:760px;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.7;
+      color:#e5e7eb;
+    }
+
+    .mission-text{
+      margin-top:26px;
+      font-size:clamp(14px,1.8vw,16px);
+      line-height:1.75;
+      color:#d1d5db;
+    }
+
+    @media (max-width: 768px){
+      nav ul{
+        gap:22px;
       }
-    }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        gap: 15px;
-        font-size: 16px;
+      .logo img{
+        height:62px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- HEADER SECTION -->
-  <header class="header">
-    <img src="logo.png" alt="Baseline Logo">
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="mission.html">Mission</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.png" alt="Baseline Logo">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="mission.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h1>We modernize the enterprise.</h1>
 
       <div class="divider"></div>
 
-
       <p class="mission-text">
         Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
         <br><br>
-        With a focus on ease of use and rapid deployment, we deliver solutions that exceed client expectations from the start, continuously refining and enhancing them through ongoing iteration. Our approach combines beautifully crafted, modern UI/UX design with powerful, enterprise-grade reporting, ensuring seamless integration across all organizational levels—from frontline management to executive leadership.
+        With a focus on ease of use and rapid deployment, we deliver solutions that exceed expectations from day one, iterating quickly to deliver measurable outcomes. Our work blends beautifully designed, modern UI/UX with powerful enterprise reporting, enabling confident decision-making from frontline management through executive leadership.
       </p>
     </div>
   </section>
+
 </body>
 </html>
