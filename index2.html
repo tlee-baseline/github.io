@@ -23,7 +23,6 @@
       --footer-bg:#1f2933;
       --footer-text:#d1d5db;
       --footer-border:#374151;
-
       --section-border:#eef2f7;
     }
 
@@ -121,17 +120,19 @@
 
     .mission-text + .mission-text{ margin-top:26px; }
 
-    /* ================= ICON SECTION ================= */
-    .image-section{
+    /* ================= CAPABILITIES ================= */
+    .capability-section{
       background:#ffffff;
+      border-top:1px solid var(--section-border);
+    }
+
+    .capability-row{
       padding:20px 32px;
       display:flex;
       justify-content:space-between;
       gap:32px;
-      border-top:1px solid var(--section-border); /* (1) subtle divider */
     }
 
-    /* (3) animate-in on scroll: start hidden */
     .image-card{
       width:32%;
       text-align:center;
@@ -146,29 +147,26 @@
         opacity .6s ease,
         transform .6s ease,
         box-shadow .25s ease,
-        border-color .25s ease; /* (2) hover lift feel */
+        border-color .25s ease;
     }
 
-    /* (3) visible state when revealed */
     .image-card.is-visible{
       opacity:1;
       transform:translateY(0);
     }
 
-    /* icons 50% smaller */
+    .image-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 30px rgba(15,23,42,.12);
+      border-color:rgba(11,90,166,.22);
+    }
+
     .image-card img{
       width:50%;
       height:auto;
       display:block;
       margin:0 auto;
-      transition:transform .25s ease; /* subtle polish on hover */
-    }
-
-    /* (2) hover lift + shadow */
-    .image-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 14px 30px rgba(15,23,42,.12);
-      border-color:rgba(11,90,166,.22);
+      transition:transform .25s ease;
     }
 
     .image-card:hover img{
@@ -207,7 +205,6 @@
       padding:0 32px 0 20px;
       color:var(--footer-text);
       font-size:14px;
-      line-height:1.6;
     }
 
     .footer-left{
@@ -228,7 +225,7 @@
       nav{ display:none; }
       .logo img{ height:62px; }
 
-      .image-section{
+      .capability-row{
         flex-direction:column;
         padding:18px 18px;
         gap:18px;
@@ -281,24 +278,50 @@
   </div>
 </section>
 
-<section class="image-section" aria-label="Capabilities">
-  <div class="image-card">
-    <img src="projectmgmt.png" alt="Project Management">
-    <h3>Project Management</h3>
-    <p>Structured execution with clarity, accountability, and control.</p>
+<section class="capability-section" aria-label="Capabilities">
+
+  <!-- ROW 1 -->
+  <div class="capability-row">
+    <div class="image-card">
+      <img src="projectmgmt.png" alt="Project Management">
+      <h3>Project Management</h3>
+      <p>Structured execution with clarity, accountability, and control.</p>
+    </div>
+
+    <div class="image-card">
+      <img src="taskmgmt.png" alt="Task Management">
+      <h3>Task Management</h3>
+      <p>Simple, intuitive tracking that drives day-to-day execution.</p>
+    </div>
+
+    <div class="image-card">
+      <img src="processauto.png" alt="Process Automation">
+      <h3>Process Automation</h3>
+      <p>Streamlining workflows to reduce effort and enforce consistency.</p>
+    </div>
   </div>
 
-  <div class="image-card">
-    <img src="taskmgmt.png" alt="Task Management">
-    <h3>Task Management</h3>
-    <p>Simple, intuitive tracking that drives day-to-day execution.</p>
+  <!-- ROW 2 -->
+  <div class="capability-row">
+    <div class="image-card">
+      <img src="m365.png" alt="M365 Custom Applications">
+      <h3>M365 Custom Applications</h3>
+      <p>Purpose-built tools aligned to how your teams work.</p>
+    </div>
+
+    <div class="image-card">
+      <img src="enterprisedash.png" alt="Enterprise Dashboards">
+      <h3>Enterprise Dashboards</h3>
+      <p>Real-time visibility from operational detail to executive insight.</p>
+    </div>
+
+    <div class="image-card">
+      <img src="Enterprisedata.png" alt="Enterprise Data & Analytics">
+      <h3>Enterprise Data &amp; Analytics</h3>
+      <p>Trusted data transformed into actionable intelligence.</p>
+    </div>
   </div>
 
-  <div class="image-card">
-    <img src="processauto.png" alt="Process Automation">
-    <h3>Process Automation</h3>
-    <p>Streamlining workflows to reduce effort and enforce consistency.</p>
-  </div>
 </section>
 
 <footer>
@@ -314,16 +337,15 @@
 </footer>
 
 <script>
-  // (3) Animate cards in on scroll using IntersectionObserver
   (function () {
     const cards = document.querySelectorAll(".image-card");
-    if (!("IntersectionObserver" in window) || !cards.length) {
+    if (!("IntersectionObserver" in window)) {
       cards.forEach(c => c.classList.add("is-visible"));
       return;
     }
 
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
           obs.unobserve(entry.target);
@@ -331,7 +353,7 @@
       });
     }, { threshold: 0.2 });
 
-    cards.forEach((c) => obs.observe(c));
+    cards.forEach(c => obs.observe(c));
   })();
 </script>
 
