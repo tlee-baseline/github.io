@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Mission | Baseline</title>
 
-  <meta name="description" content="Baseline modernizes the enterprise through intuitive applications, governed data management, and enterprise reporting for federal government clients." />
+  <meta name="description" content="Baseline modernizes the enterprise through intuitive applications and enterprise reporting for federal government clients." />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -17,11 +17,12 @@
     :root{
       --bps-blue:#0b5aa6;
       --ink:#0f172a;
-      --muted:#475569;
       --header-border:#e5e7eb;
+
       --footer-bg:#1f2933;
       --footer-text:#d1d5db;
       --footer-border:#374151;
+
       --section-bg:#ffffff;
       --section-border:#eef2f7;
     }
@@ -33,7 +34,7 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       background:#000;
       color:#f9fafb;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x:hidden;
     }
 
     /* ================= HEADER ================= */
@@ -48,7 +49,6 @@
       align-items:center;
       justify-content:space-between;
       padding:9px 32px 9px 20px;
-      position:relative;
     }
 
     .logo img{
@@ -57,6 +57,7 @@
       display:block;
     }
 
+    /* Desktop nav */
     nav ul{
       list-style:none;
       margin:0;
@@ -86,9 +87,47 @@
       transition:width .25s ease;
     }
 
-    nav a:hover::after{
-      width:100%;
+    nav a:hover::after{ width:100%; }
+
+    /* Mobile menu button: hidden by default (desktop) */
+    .menu-toggle{
+      display:none;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--header-border);
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:700;
+      cursor:pointer;
     }
+
+    .menu-toggle:focus{
+      outline:none;
+      box-shadow:0 0 0 4px rgba(11,90,166,.12);
+      border-color:rgba(11,90,166,.40);
+    }
+
+    .hamburger{
+      width:18px;
+      height:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .hamburger span{
+      height:2px;
+      width:100%;
+      background:var(--ink);
+      border-radius:2px;
+      display:block;
+    }
+
+    /* ================= MOBILE OVERLAY (default hidden everywhere) ================= */
+    .mobile-overlay{ display:none; }
+    .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
 
     /* ================= HERO ================= */
     .hero{
@@ -124,9 +163,7 @@
       margin:0;
     }
 
-    .mission-text + .mission-text{
-      margin-top:26px;
-    }
+    .mission-text + .mission-text{ margin-top:26px; }
 
     /* ================= WHITE CAPABILITY SECTION ================= */
     .capability-section{
@@ -142,6 +179,7 @@
       justify-content:center;
     }
 
+    /* +100% size vs your original 520px */
     .capability-card{
       width:min(1040px, 100%);
       display:flex;
@@ -186,66 +224,70 @@
       font-weight:600;
     }
 
-    .footer-right a:hover{
-      text-decoration:underline;
-    }
+    .footer-right a:hover{ text-decoration:underline; }
 
     /* ================= RESPONSIVE ================= */
     @media (max-width:768px){
       .logo img{ height:62px; }
 
-      .capability-inner{
-        padding:36px 18px;
+      /* Hide desktop nav, show menu button */
+      nav{ display:none; }
+      .menu-toggle{ display:flex; }
+
+      /* Enable overlay ONLY on mobile */
+      .mobile-overlay{
+        display:none;               /* hidden until opened */
+        position:fixed;
+        inset:0;
+        background:rgba(2,6,23,.65);
+        z-index:9999;
       }
 
-      .capability-card{
+      .mobile-overlay.is-open{ display:block; }
+
+      .mobile-panel{
+        background:#fff;
+        color:var(--ink);
         width:100%;
+        height:100%;
+        padding:24px 18px;
       }
+
+      .mobile-links{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:10px;
+      }
+
+      .mobile-links a{
+        text-decoration:none;
+        color:var(--ink);
+        font-weight:800;
+        font-size:22px;
+        padding:16px 14px;
+        border-radius:14px;
+        background:#f8fafc;
+        border:1px solid #eef2f7;
+      }
+
+      .capability-inner{ padding:36px 18px; }
 
       .footer-inner{
         flex-direction:column;
         gap:10px;
         text-align:center;
       }
-
-      nav{ 
-        display:none; /* Hide the main navigation on mobile */
-      }
-
-      .menu-toggle{ 
-        display:flex; /* Show the mobile menu button */
-      }
-
-      /* Mobile Menu - initially hidden */
-      .mobile-overlay{
-        display:none; /* Hide mobile menu by default */
-      }
-
-      /* Mobile links style */
-      .mobile-links {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .mobile-links a {
-        padding: 12px;
-        font-size: 18px;
-        display: block;
-        text-decoration: none;
-        color: #0f172a;
-      }
-
-      .mobile-overlay.is-open{
-        display:block; /* Show menu when activated */
-      }
     }
+
+    /* lock scroll when menu open */
+    body.menu-open{ overflow:hidden; }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (not sticky) -->
   <header>
     <div class="header-inner">
       <div class="logo">
@@ -270,14 +312,14 @@
     </div>
   </header>
 
-  <!-- FULL-SCREEN MOBILE MENU -->
+  <!-- MOBILE OVERLAY NAV (hidden on desktop by CSS above) -->
   <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
-    <div class="mobile-panel" id="mobilePanel">
+    <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
       <div class="mobile-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="mission.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a role="menuitem" href="index.html">Home</a>
+        <a role="menuitem" href="services.html">Services</a>
+        <a role="menuitem" href="mission.html">About</a>
+        <a role="menuitem" href="contact.html">Contact</a>
       </div>
     </div>
   </div>
@@ -286,7 +328,7 @@
   <section class="hero">
     <div class="hero-content">
       <p class="mission-text">
-        Baseline specializes in developing intuitive, user-centric applications, governed data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
+        Baseline specializes in developing intuitive, user-centric applications, enterprise data management solutions, and enterprise-grade reporting capabilities that drive business transformation for federal government clients.
       </p>
 
       <p class="mission-text">
@@ -295,7 +337,7 @@
     </div>
   </section>
 
-  <!-- M365 CUSTOM APPLICATIONS ICON SECTION -->
+  <!-- M365 IMAGE SECTION (below hero) -->
   <section class="capability-section">
     <div class="capability-inner">
       <div class="capability-card">
@@ -321,15 +363,10 @@
     (function () {
       const toggle = document.getElementById("menuToggle");
       const overlay = document.getElementById("mobileOverlay");
-      const header = document.getElementById("siteHeader");
 
-      function setOverlayOffset() {
-        const headerHeight = header.offsetHeight;
-        overlay.style.top = headerHeight + "px";
-      }
+      if (!toggle || !overlay) return;
 
       function openMenu() {
-        setOverlayOffset();
         overlay.classList.add("is-open");
         document.body.classList.add("menu-open");
         toggle.setAttribute("aria-expanded", "true");
@@ -349,24 +386,22 @@
 
       toggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (isOpen()) closeMenu();
-        else openMenu();
+        isOpen() ? closeMenu() : openMenu();
       });
 
+      // Tap outside the panel to close (overlay background)
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeMenu();
       });
 
+      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && isOpen()) closeMenu();
       });
 
+      // Close after clicking a link
       overlay.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => closeMenu());
-      });
-
-      window.addEventListener("resize", () => {
-        if (isOpen()) setOverlayOffset();
       });
     })();
   </script>
