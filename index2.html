@@ -58,7 +58,6 @@
       display:block;
     }
 
-    /* Desktop nav */
     nav ul{
       list-style:none;
       margin:0;
@@ -90,7 +89,6 @@
 
     nav a:hover::after{ width:100%; }
 
-    /* Mobile menu button: hidden by default (desktop) */
     .menu-toggle{
       display:none;
       align-items:center;
@@ -133,14 +131,12 @@
     /* ================= HERO ================= */
     .hero{
       position:relative;
-      min-height:100vh;
+      /* reduce hero height by ~200px vs 100vh */
+      min-height:calc(100vh - 200px);
       display:flex;
-      align-items:flex-start;
       justify-content:center;
       padding:40px 20px;
-      background-image:url("hero-military-dashboard.jpg");
-      background-size:cover;
-      background-position:center;
+      background:url("hero-military-dashboard.jpg") center / cover no-repeat;
       text-align:center;
     }
 
@@ -152,12 +148,26 @@
       backdrop-filter:blur(1px);
     }
 
-    /* "System orchestration" position restored (not pushed up) */
     .hero-content{
       position:relative;
       max-width:980px;
       margin-top:14vh;
     }
+
+    /* Subtle load-in animation */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(10px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .hero-animate{
+      opacity:0;
+      animation:fadeUp .85s ease forwards;
+    }
+
+    .hero-animate.delay-1{ animation-delay:.05s; }
+    .hero-animate.delay-2{ animation-delay:.18s; }
+    .hero-animate.delay-3{ animation-delay:.32s; }
 
     .hero-lead{
       margin:0 auto;
@@ -169,6 +179,12 @@
       text-shadow:0 2px 18px rgba(0,0,0,.35);
     }
 
+    /* Slightly different weighting for "Precise execution" */
+    .hero-lead .emph{
+      font-weight:900;
+      letter-spacing:.02em;
+    }
+
     .mission-text{
       font-size:clamp(15px, 2vw, 18px);
       line-height:1.75;
@@ -176,13 +192,13 @@
       margin:0;
     }
 
-    /* spacing utilities (acts like "paragraph breaks") */
+    /* spacing utilities */
     .spacer-1{ margin-top:18px; }
     .spacer-2{ margin-top:30px; }
     .spacer-3{ margin-top:42px; }
     .spacer-4{ margin-top:56px; }
 
-    /* ================= CAPABILITIES (BOTTOM) ================= */
+    /* ================= CAPABILITIES ================= */
     .capability-section{
       background:#ffffff;
       border-top:1px solid var(--section-border);
@@ -228,7 +244,6 @@
       border-color:rgba(11,90,166,.22);
     }
 
-    /* icons 50% smaller */
     .image-card img{
       width:50%;
       height:auto;
@@ -237,9 +252,7 @@
       transition:transform .25s ease;
     }
 
-    .image-card:hover img{
-      transform:translateY(-2px);
-    }
+    .image-card:hover img{ transform:translateY(-2px); }
 
     .image-card h3{
       margin:14px 0 6px;
@@ -293,11 +306,9 @@
     @media (max-width:768px){
       .logo img{ height:62px; }
 
-      /* Hide desktop nav, show menu button */
       nav{ display:none; }
       .menu-toggle{ display:flex; }
 
-      /* Enable overlay ONLY on mobile */
       .mobile-overlay{
         display:none;
         position:fixed;
@@ -305,7 +316,6 @@
         background:rgba(2,6,23,.65);
         z-index:9999;
       }
-
       .mobile-overlay.is-open{ display:block; }
 
       .mobile-panel{
@@ -350,9 +360,9 @@
       }
 
       .hero-content{ margin-top:10vh; }
+      .hero{ min-height:calc(100vh - 220px); } /* keep similar reduction on mobile */
     }
 
-    /* lock scroll when menu open */
     body.menu-open{ overflow:hidden; }
   </style>
 </head>
@@ -400,24 +410,25 @@
   <section class="hero">
     <div class="hero-content">
 
-      <h1 class="hero-lead">
-        System orchestration on modern platforms—everything working together, simply and reliably.
+      <h1 class="hero-lead hero-animate delay-1">
+        Unified systems. Streamlined processes. <span class="emph">Precise execution.</span>
       </h1>
 
-      <!-- 3 more "paragraph breaks" after System Orchestration -->
-      <div class="spacer-4"></div>
-      <div class="spacer-3"></div>
-      <div class="spacer-2"></div>
+      <!-- paragraph breaks before first paragraph -->
+      <div class="spacer-4 hero-animate delay-2"></div>
+      <div class="spacer-3 hero-animate delay-2"></div>
+      <div class="spacer-2 hero-animate delay-2"></div>
+      <div class="spacer-2 hero-animate delay-2"></div>
 
-      <p class="mission-text">
+      <p class="mission-text hero-animate delay-2">
         Baseline delivers workflow-driven project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. Our solutions are designed to integrate cleanly into existing delivery environments, providing intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
       </p>
 
-      <!-- 2 more "paragraph breaks" after program oversight -->
-      <div class="spacer-3"></div>
-      <div class="spacer-2"></div>
+      <!-- breaks after program oversight -->
+      <div class="spacer-3 hero-animate delay-3"></div>
+      <div class="spacer-2 hero-animate delay-3"></div>
 
-      <p class="mission-text">
+      <p class="mission-text hero-animate delay-3">
         With a focus on rapid deployment and operational reliability, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
       </p>
 
@@ -485,7 +496,7 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu toggle (working version)
     (function () {
       const toggle = document.getElementById("menuToggle");
       const overlay = document.getElementById("mobileOverlay");
@@ -528,7 +539,7 @@
       });
     })();
 
-    // Animate cards in on scroll
+    // Animate capability cards in on scroll
     (function () {
       const cards = document.querySelectorAll(".image-card");
       if (!("IntersectionObserver" in window) || !cards.length) {
