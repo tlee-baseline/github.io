@@ -19,8 +19,6 @@
       --ink:#0f172a;
       --muted:#475569;
       --header-border:#e5e7eb;
-      --panel-border:#e2e8f0;
-      --panel-shadow: 0 10px 30px rgba(2, 6, 23, 0.14);
     }
 
     *{ box-sizing:border-box }
@@ -36,7 +34,7 @@
     header{
       position:sticky;
       top:0;
-      z-index:1000;
+      z-index:2000;
       background:#ffffff;
       border-bottom:1px solid var(--header-border);
     }
@@ -101,12 +99,18 @@
       align-items:center;
       gap:10px;
       padding:10px 12px;
-      border:1px solid var(--panel-border);
+      border:1px solid var(--header-border);
       border-radius:12px;
       background:#fff;
       color:var(--ink);
-      font-weight:600;
+      font-weight:700;
       cursor:pointer;
+    }
+
+    .menu-toggle:focus{
+      outline:none;
+      box-shadow:0 0 0 4px rgba(11,90,166,.12);
+      border-color:rgba(11,90,166,.40);
     }
 
     .hamburger{
@@ -124,41 +128,64 @@
       border-radius:2px;
     }
 
-    /* Mobile dropdown */
-    .mobile-panel{
+    /* ================= FULL-SCREEN MOBILE MENU ================= */
+    .mobile-overlay{
       display:none;
+      position:fixed;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      z-index:1500;
+      background:rgba(2,6,23,.65);
+    }
+
+    /* Panel starts below header; fills the rest of the screen */
+    .mobile-panel{
       position:absolute;
-      right:20px;
-      top:100%;
-      margin-top:10px;
-      width:min(320px, calc(100vw - 40px));
-      background:#fff;
-      border:1px solid var(--panel-border);
-      border-radius:16px;
-      box-shadow:var(--panel-shadow);
-      overflow:hidden;
-    }
-
-    .mobile-panel a{
-      display:block;
-      padding:14px 16px;
+      left:0;
+      right:0;
+      top:0;
+      background:#ffffff;
       color:var(--ink);
+      border-top:1px solid var(--header-border);
+      padding:18px 20px 24px;
+      min-height:100%;
+    }
+
+    .mobile-links{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .mobile-links a{
       text-decoration:none;
-      font-weight:600;
-      border-bottom:1px solid #f1f5f9;
-    }
-
-    .mobile-panel a:last-child{
-      border-bottom:none;
-    }
-
-    .mobile-panel a:hover{
+      color:var(--ink);
+      font-weight:800;
+      font-size:22px;           /* bigger font */
+      padding:16px 14px;        /* larger tap target */
+      border-radius:14px;
       background:#f8fafc;
-      color:var(--bps-blue);
+      border:1px solid #eef2f7;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease, color .12s ease;
     }
 
-    .mobile-panel.is-open{
+    .mobile-links a:hover{
+      border-color:rgba(11,90,166,.35);
+      color:var(--bps-blue);
+      background:#ffffff;
+      transform:translateY(-1px);
+    }
+
+    .mobile-overlay.is-open{
       display:block;
+    }
+
+    /* When menu is open, prevent background scroll */
+    body.menu-open{
+      overflow:hidden;
     }
 
     /* ================= HERO ================= */
@@ -210,7 +237,7 @@
 <body>
 
   <!-- HEADER -->
-  <header>
+  <header id="siteHeader">
     <div class="header-inner">
       <div class="logo">
         <img src="logo.png" alt="Baseline Logo">
@@ -225,21 +252,26 @@
         </ul>
       </nav>
 
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false">
-        <span class="hamburger">
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay">
+        <span class="hamburger" aria-hidden="true">
           <span></span><span></span><span></span>
         </span>
         Menu
       </button>
+    </div>
+  </header>
 
-      <div class="mobile-panel" id="mobilePanel">
+  <!-- FULL-SCREEN MOBILE MENU OVERLAY (sits under header visually) -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="mobile-links">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="mission.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
-  </header>
+  </div>
 
   <!-- MISSION CONTENT -->
   <section class="hero">
@@ -255,21 +287,62 @@
   </section>
 
   <script>
-    const toggle = document.getElementById("menuToggle");
-    const panel = document.getElementById("mobilePanel");
+    (function () {
+      const toggle = document.getElementById("menuToggle");
+      const overlay = document.getElementById("mobileOverlay");
+      const header = document.getElementById("siteHeader");
 
-    toggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      panel.classList.toggle("is-open");
-    });
+      function setOverlayOffset() {
+        // Push the overlay down so it starts under the header
+        const headerHeight = header.offsetHeight;
+        overlay.style.top = headerHeight + "px";
+      }
 
-    document.addEventListener("click", () => {
-      panel.classList.remove("is-open");
-    });
+      function openMenu() {
+        setOverlayOffset();
+        overlay.classList.add("is-open");
+        document.body.classList.add("menu-open");
+        toggle.setAttribute("aria-expanded", "true");
+        overlay.setAttribute("aria-hidden", "false");
+      }
 
-    panel.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
+      function closeMenu() {
+        overlay.classList.remove("is-open");
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      function isOpen() {
+        return overlay.classList.contains("is-open");
+      }
+
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (isOpen()) closeMenu();
+        else openMenu();
+      });
+
+      // Clicking the dimmed area closes the menu
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeMenu();
+      });
+
+      // Close on Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isOpen()) closeMenu();
+      });
+
+      // Close after clicking any link
+      overlay.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => closeMenu());
+      });
+
+      // Keep correct offset on resize/orientation changes
+      window.addEventListener("resize", () => {
+        if (isOpen()) setOverlayOffset();
+      });
+    })();
   </script>
 
 </body>
