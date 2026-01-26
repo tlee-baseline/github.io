@@ -169,7 +169,8 @@ nav a[aria-current="page"]::after{
   border:1px solid rgba(255,255,255,.10);
 }
 
-/* ================= HERO ================= */
+/* ================= HERO (INDEX ONLY) ================= */
+/* 1) Keep the shared hero styles */
 .hero{
   position:relative;
   min-height:calc(100vh - 200px);
@@ -179,6 +180,11 @@ nav a[aria-current="page"]::after{
   background-size:cover;
   background-position:center;
   text-align:center;
+}
+
+/* 2) Apply the background image ONLY when the hero has .home-hero */
+.hero.home-hero{
+  background-image:url("hero-military-dashboard.jpg");
 }
 
 .hero::before{
