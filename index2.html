@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Mission | Baseline</title>
 
-  <meta name="description" content="Baseline delivers workflow-driven project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients." />
+  <meta name="description" content="Baseline delivers workflow-driven custom project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients." />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -17,18 +17,20 @@
     :root{
       --bps-blue:#0b5aa6;
       --ink:#0f172a;
-      --muted:#475569;
 
       --header-border:#e5e7eb;
+
       --footer-bg:#1f2933;
       --footer-text:#d1d5db;
       --footer-border:#374151;
 
+      --section-bg:#ffffff;
       --section-border:#eef2f7;
       --card-border:#eef2f7;
+      --muted:#475569;
     }
 
-    *{ box-sizing:border-box }
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
@@ -58,6 +60,7 @@
       display:block;
     }
 
+    /* Desktop nav */
     nav ul{
       list-style:none;
       margin:0;
@@ -89,6 +92,7 @@
 
     nav a:hover::after{ width:100%; }
 
+    /* Mobile menu button: hidden by default (desktop) */
     .menu-toggle{
       display:none;
       align-items:center;
@@ -124,7 +128,7 @@
       display:block;
     }
 
-    /* ================= MOBILE OVERLAY (default hidden everywhere) ================= */
+    /* ================= MOBILE OVERLAY (hidden on desktop by default) ================= */
     .mobile-overlay{ display:none; }
     .mobile-overlay.is-open{ display:none; } /* keep hidden on desktop even if JS toggles */
 
@@ -134,9 +138,12 @@
       /* reduce hero height by ~200px vs 100vh */
       min-height:calc(100vh - 200px);
       display:flex;
+      align-items:flex-start;
       justify-content:center;
       padding:40px 20px;
-      background:url("hero-military-dashboard.jpg") center / cover no-repeat;
+      background-image:url("hero-military-dashboard.jpg");
+      background-size:cover;
+      background-position:center;
       text-align:center;
     }
 
@@ -148,13 +155,14 @@
       backdrop-filter:blur(1px);
     }
 
+    /* keep it where it was (not pushed higher) */
     .hero-content{
       position:relative;
       max-width:980px;
       margin-top:14vh;
     }
 
-    /* Subtle load-in animation */
+    /* subtle hero load-in animation */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(10px); }
       to   { opacity:1; transform:translateY(0); }
@@ -164,10 +172,9 @@
       opacity:0;
       animation:fadeUp .85s ease forwards;
     }
-
-    .hero-animate.delay-1{ animation-delay:.05s; }
+    .hero-animate.delay-1{ animation-delay:.06s; }
     .hero-animate.delay-2{ animation-delay:.18s; }
-    .hero-animate.delay-3{ animation-delay:.32s; }
+    .hero-animate.delay-3{ animation-delay:.30s; }
 
     .hero-lead{
       margin:0 auto;
@@ -179,9 +186,8 @@
       text-shadow:0 2px 18px rgba(0,0,0,.35);
     }
 
-    /* Slightly different weighting for "Precise execution" */
     .hero-lead .emph{
-      font-weight:900;
+      font-weight:900; /* slightly different weight */
       letter-spacing:.02em;
     }
 
@@ -192,6 +198,11 @@
       margin:0;
     }
 
+    .highlight{
+      color:var(--bps-blue);
+      font-weight:700;
+    }
+
     /* spacing utilities */
     .spacer-1{ margin-top:18px; }
     .spacer-2{ margin-top:30px; }
@@ -200,9 +211,10 @@
 
     /* ================= CAPABILITIES ================= */
     .capability-section{
-      background:#ffffff;
+      background:var(--section-bg);
       border-top:1px solid var(--section-border);
       border-bottom:1px solid var(--section-border);
+      color:var(--ink);
     }
 
     .capability-row{
@@ -244,6 +256,7 @@
       border-color:rgba(11,90,166,.22);
     }
 
+    /* images shown at ~50% size within cards */
     .image-card img{
       width:50%;
       height:auto;
@@ -306,42 +319,84 @@
     @media (max-width:768px){
       .logo img{ height:62px; }
 
+      /* Hide desktop nav, show menu button */
       nav{ display:none; }
       .menu-toggle{ display:flex; }
 
+      /* Enable overlay ONLY on mobile and match footer colors */
       .mobile-overlay{
-        display:none;
+        display:none;               /* hidden until opened */
         position:fixed;
         inset:0;
-        background:rgba(2,6,23,.65);
+        background:rgba(2,6,23,.55);
         z-index:9999;
       }
       .mobile-overlay.is-open{ display:block; }
 
       .mobile-panel{
-        background:#fff;
-        color:var(--ink);
+        background:var(--footer-bg);
+        color:var(--footer-text);
         width:100%;
         height:100%;
-        padding:24px 18px;
+        padding:18px 18px 24px;
+        display:flex;
+        flex-direction:column;
+      }
+
+      .mobile-topbar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        padding:8px 2px 16px;
+        border-bottom:1px solid rgba(255,255,255,.10);
+      }
+
+      .mobile-actions{
+        display:flex;
+        align-items:center;
+        gap:10px;
+      }
+
+      .mobile-btn{
+        appearance:none;
+        border:1px solid rgba(255,255,255,.16);
+        background:rgba(255,255,255,.06);
+        color:var(--footer-text);
+        border-radius:12px;
+        padding:10px 12px;
+        font-weight:800;
+        cursor:pointer;
+      }
+
+      .mobile-btn:active{ transform:translateY(1px); }
+
+      .mobile-title{
+        font-weight:900;
+        letter-spacing:.02em;
+        color:#ffffff;
       }
 
       .mobile-links{
         display:flex;
         flex-direction:column;
         gap:10px;
-        margin-top:10px;
+        margin-top:18px;
       }
 
       .mobile-links a{
         text-decoration:none;
-        color:var(--ink);
-        font-weight:800;
+        color:#ffffff;
+        font-weight:900;
         font-size:22px;
         padding:16px 14px;
         border-radius:14px;
-        background:#f8fafc;
-        border:1px solid #eef2f7;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.10);
+      }
+
+      .mobile-links a:hover{
+        background:rgba(255,255,255,.10);
       }
 
       .capability-row{
@@ -359,10 +414,16 @@
         text-align:center;
       }
 
-      .hero-content{ margin-top:10vh; }
-      .hero{ min-height:calc(100vh - 220px); } /* keep similar reduction on mobile */
+      .hero{
+        min-height:calc(100vh - 220px);
+      }
+
+      .hero-content{
+        margin-top:10vh;
+      }
     }
 
+    /* lock scroll when menu open */
     body.menu-open{ overflow:hidden; }
   </style>
 </head>
@@ -394,9 +455,17 @@
     </div>
   </header>
 
-  <!-- MOBILE OVERLAY NAV -->
+  <!-- MOBILE OVERLAY NAV (mobile only styles in media query) -->
   <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
     <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
+      <div class="mobile-topbar">
+        <div class="mobile-title">Menu</div>
+        <div class="mobile-actions">
+          <button class="mobile-btn" id="menuBack" type="button" aria-label="Back to previous page">Back</button>
+          <button class="mobile-btn" id="menuClose" type="button" aria-label="Close menu">Close</button>
+        </div>
+      </div>
+
       <div class="mobile-links">
         <a role="menuitem" href="index.html">Home</a>
         <a role="menuitem" href="services.html">Services</a>
@@ -409,29 +478,25 @@
   <!-- HERO IMAGE + UPDATED TEXT -->
   <section class="hero">
     <div class="hero-content">
-
       <h1 class="hero-lead hero-animate delay-1">
         Unified systems enabling <span class="emph">precise execution.</span>
       </h1>
 
-      <!-- paragraph breaks before first paragraph -->
+      <!-- extra spacing before first paragraph -->
       <div class="spacer-4 hero-animate delay-2"></div>
       <div class="spacer-3 hero-animate delay-2"></div>
-      <div class="spacer-2 hero-animate delay-2"></div>
       <div class="spacer-2 hero-animate delay-2"></div>
 
       <p class="mission-text hero-animate delay-2">
         Baseline delivers workflow-driven custom project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. By leveraging existing Microsoft 365 licensing and platform capabilities, our solutions deliver intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
       </p>
 
-      <!-- breaks after program oversight -->
       <div class="spacer-3 hero-animate delay-3"></div>
       <div class="spacer-2 hero-animate delay-3"></div>
 
       <p class="mission-text hero-animate delay-3">
-       Engineered for <span class="highlight">rapid deployment</span> and <span class="highlight">operational reliability</span>, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
+        <span class="highlight">Engineered for rapid deployment and operational reliability</span>, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
       </p>
-
     </div>
   </section>
 
@@ -496,10 +561,12 @@
   </footer>
 
   <script>
-    // Mobile menu toggle (working version)
+    // Mobile menu toggle (stable, proven behavior)
     (function () {
       const toggle = document.getElementById("menuToggle");
       const overlay = document.getElementById("mobileOverlay");
+      const backBtn = document.getElementById("menuBack");
+      const closeBtn = document.getElementById("menuClose");
 
       if (!toggle || !overlay) return;
 
@@ -522,18 +589,36 @@
       }
 
       toggle.addEventListener("click", (e) => {
+        e.preventDefault();
         e.stopPropagation();
         isOpen() ? closeMenu() : openMenu();
       });
 
+      // Back to previous page
+      if (backBtn) {
+        backBtn.addEventListener("click", () => {
+          // Close first to avoid any visual jank during navigation
+          closeMenu();
+          window.history.back();
+        });
+      }
+
+      // Close button
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => closeMenu());
+      }
+
+      // Tap outside the panel to close (overlay background)
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeMenu();
       });
 
+      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && isOpen()) closeMenu();
       });
 
+      // Close after clicking a link
       overlay.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => closeMenu());
       });
