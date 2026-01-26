@@ -13,11 +13,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Shared stylesheet (matches your new homepage template) -->
+  <!-- Shared stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Page-only styling (aligned to the new template palette and typography) */
     .about-hero{
       position:relative;
       padding:56px 20px 44px;
@@ -60,6 +59,7 @@
       padding:44px 32px;
     }
 
+    /* GRID */
     .about-grid{
       display:grid;
       grid-template-columns:repeat(2, 1fr);
@@ -99,11 +99,12 @@
 
     .about-list li{ margin:8px 0; }
 
-    .about-wide{
-      margin-top:22px;
+    /* Center the third card */
+    .about-card.centered{
+      grid-column:1 / span 2;
+      max-width:520px;
+      margin:0 auto;
     }
-
-    .about-wide .about-card{ box-shadow:0 10px 24px rgba(15,23,42,.06); }
 
     .about-note{
       margin-top:22px;
@@ -121,27 +122,33 @@
     @media (max-width: 920px){
       .about-inner{ padding:34px 18px; }
       .about-grid{ grid-template-columns:1fr; }
+
+      .about-card.centered{
+        grid-column:auto;
+        max-width:100%;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Header + Mobile Menu + Footer are injected automatically by site.js -->
+  <!-- Header + Mobile Menu + Footer via site.js -->
 
-  <!-- PAGE HERO -->
+  <!-- HERO -->
   <section class="about-hero">
     <div class="about-hero-inner">
       <h1>About</h1>
       <p>
-        Baseline is a federal-focused delivery partner specializing in enterprise PMO solutions developed on the M365 Power Platform.
+        Baseline is a federal-focused delivery partner specializing in enterprise PMO solutions developed on the Microsoft Power Platform.
         Our approach emphasizes clean data pipelines, execution discipline, governance, and decision-quality reporting—without unnecessary custom code.
       </p>
     </div>
   </section>
 
-  <!-- ABOUT CONTENT -->
+  <!-- CONTENT -->
   <section class="about-wrap" aria-label="About Baseline">
     <div class="about-inner">
+
       <div class="about-grid">
 
         <article class="about-card">
@@ -163,10 +170,7 @@
           </ul>
         </article>
 
-      </div>
-
-      <div class="about-wide">
-        <article class="about-card">
+        <article class="about-card centered">
           <h2 class="about-title">Federal Delivery Fit</h2>
           <ul class="about-list">
             <li>Prime and subcontract engagements</li>
@@ -174,16 +178,17 @@
             <li>Controls-aligned reporting and executive-ready outputs</li>
           </ul>
         </article>
+
       </div>
 
       <div class="about-note">
         <strong>What clients notice:</strong> Change is not easy, but adoption improves when tools align to how teams actually execute.
         We build user-centric solutions with modern UI/UX and operational guardrails that make execution measurable, transparent, and reportable.
       </div>
+
     </div>
   </section>
 
-  <!-- Shared loader: injects header/footer, sets active nav, wires mobile menu, handles no-flash -->
   <script src="site.js"></script>
 </body>
 </html>
