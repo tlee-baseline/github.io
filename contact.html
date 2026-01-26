@@ -2,45 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact | Baseline Project Systems</title>
-  <meta name="description" content="Contact Baseline Project Systems, LLC." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Baseline</title>
+
+  <meta name="description" content="Contact Baseline for teaming, delivery support, or a capabilities discussion." />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+  <!-- Shared stylesheet (matches your new homepage template) -->
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-only styling aligned to the new template */
+    .contact-hero{
+      position:relative;
+      padding:56px 20px 44px;
+      background:#0b1220;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+
+    .contact-hero-inner{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .contact-hero h1{
+      margin:0;
+      font-size:clamp(24px, 3.2vw, 40px);
+      font-weight:900;
+      letter-spacing:.01em;
+      color:#ffffff;
+    }
+
+    .contact-hero p{
+      margin:14px auto 0;
+      max-width:900px;
+      font-size:clamp(15px, 2vw, 18px);
+      line-height:1.75;
+      color:#dbe3ee;
+    }
+
+    .contact-wrap{
+      background:#ffffff;
+      color:var(--ink);
+      border-top:1px solid var(--section-border);
+      border-bottom:1px solid var(--section-border);
+    }
+
+    .contact-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 32px;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .panel{
+      background:#ffffff;
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      padding:22px 20px;
+      box-shadow:0 10px 24px rgba(15,23,42,.06);
+    }
+
+    .panel h2{
+      margin:0 0 10px;
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:.02em;
+      color:var(--bps-blue);
+    }
+
+    .panel p{
+      margin:0 0 16px;
+      color:#334155;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .form{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    label{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      font-size:14px;
+      font-weight:700;
+      color:#334155;
+    }
+
+    input, textarea{
+      font:inherit;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid #e5e7eb;
+      outline:none;
+      background:#ffffff;
+      color:var(--ink);
+      transition:border-color .2s ease, box-shadow .2s ease;
+    }
+
+    textarea{
+      min-height:140px;
+      resize:vertical;
+      line-height:1.6;
+    }
+
+    input:focus, textarea:focus{
+      border-color:rgba(11,90,166,.50);
+      box-shadow:0 0 0 4px rgba(11,90,166,.12);
+    }
+
+    .btn{
+      margin-top:6px;
+      appearance:none;
+      border:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:900;
+      letter-spacing:.02em;
+      cursor:pointer;
+      background:var(--bps-blue);
+      color:#ffffff;
+      transition:transform .15s ease, filter .15s ease;
+    }
+
+    .btn:hover{ filter:brightness(1.03); }
+    .btn:active{ transform:translateY(1px); }
+
+    .side-list{
+      margin:0;
+      padding-left:18px;
+      color:#334155;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .side-list li{ margin:8px 0; }
+
+    .side-list a{
+      color:var(--bps-blue);
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    .side-list a:hover{ text-decoration:underline; }
+
+    .subhead{
+      margin:18px 0 10px;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:.02em;
+      color:#0f172a;
+    }
+
+    .note{
+      margin-top:16px;
+      padding:14px 16px;
+      border:1px solid var(--section-border);
+      background:#f8fafc;
+      border-radius:16px;
+      color:#334155;
+      line-height:1.7;
+      font-size:14.5px;
+    }
+
+    @media (max-width: 920px){
+      .contact-inner{ padding:34px 18px; }
+      .contact-grid{ grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <img src="logo.png" alt="Baseline Project Systems Logo">
-        <div class="title">
-          <h1>Baseline Project Systems, LLC</h1>
-          <p>Workflow-driven delivery across Microsoft 365 — from requirements to adoption — with trusted, rolled-up reporting.</p>
-        </div>
-      </div>
+  <!-- Header + Mobile Menu + Footer are injected automatically by site.js -->
 
-      <nav class="nav" aria-label="Primary">
-        <a href="index.html"><span class="dot"></span>Home</a>
-        <a href="services.html"><span class="dot red"></span>Services</a>
-        <a href="about.html"><span class="dot"></span>About Us</a>
-        <a href="contact.html" aria-current="page"><span class="dot"></span>Contact</a>
-      </nav>
-    </header>
+  <!-- PAGE HERO -->
+  <section class="contact-hero">
+    <div class="contact-hero-inner">
+      <h1>Contact</h1>
+      <p>
+        For teaming, delivery support, or a quick capabilities discussion, reach out below. We respond promptly with next steps and a clear path forward.
+      </p>
+    </div>
+  </section>
 
-    <main>
-      <div class="grid">
-        <section class="card">
-          <h2>Contact</h2>
-          <p class="lead">
-            For teaming, delivery support, or a quick capabilities discussion, reach out using the email below or send a message.
+  <!-- CONTACT CONTENT -->
+  <section class="contact-wrap" aria-label="Contact Baseline">
+    <div class="contact-inner">
+      <div class="contact-grid">
+
+        <section class="panel" aria-label="Send a message">
+          <h2>Send a Message</h2>
+          <p>
+            Use the form below to share context on your requirement, timeline, and stakeholders. If you prefer, email us directly.
           </p>
 
+          <!-- NOTE: mailto forms are limited by the user's email client. This keeps it simple and consistent with static hosting. -->
           <form class="form" action="mailto:tlee@baselineprojectsystems.com" method="post" enctype="text/plain">
             <label>
               Name
@@ -57,41 +230,35 @@
               <textarea name="message" required></textarea>
             </label>
 
-            <button class="button" type="submit">Send</button>
+            <button class="btn" type="submit">Send</button>
           </form>
+
+          <div class="note">
+            Tip: For faster triage, include the sponsoring organization, target platform (M365/Power Platform), and any reporting or governance constraints.
+          </div>
         </section>
 
-        <aside class="card">
+        <aside class="panel" aria-label="Direct contact and requests">
           <h2>Direct</h2>
-          <ul>
+          <ul class="side-list">
             <li>Email: <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a></li>
             <li>Location: Alexandria, VA</li>
           </ul>
 
-          <h2 style="margin-top:18px">Typical Requests</h2>
-          <ul>
+          <div class="subhead">Typical Requests</div>
+          <ul class="side-list">
             <li>Power Platform app + workflow delivery</li>
             <li>Power BI rollup reporting</li>
             <li>Project Online modernization</li>
             <li>PMO governance and tooling</li>
           </ul>
         </aside>
-      </div>
 
-      <div class="footer">
-        <div class="footer-left">
-          <div>© <span id="y"></span> Baseline Project Systems, LLC</div>
-          <div>Alexandria, VA</div>
-        </div>
-        <div>
-          <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
-        </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </section>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+  <!-- Shared loader: injects header/footer, sets active nav, wires mobile menu, handles no-flash -->
+  <script src="site.js"></script>
 </body>
 </html>
