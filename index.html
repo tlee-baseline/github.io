@@ -13,51 +13,47 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Shared stylesheet (from the refactor) -->
+  <!-- Shared stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!--
-    NOTE:
-    Header + Mobile Menu Overlay are injected automatically from header.html by site.js
-    Footer is injected automatically from footer.html by site.js
-    This page contains ONLY the main content for the new homepage.
-  -->
+  <!-- Header + Mobile Menu + Footer injected automatically by site.js -->
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO (Homepage only) -->
+  <section class="hero home-hero">
     <div class="hero-content">
+
       <h1 class="hero-lead hero-animate delay-1">
         Unified systems. <span class="emph">Precise execution.</span>
       </h1>
 
       <div class="spacer-4 hero-animate delay-2"></div>
       <div class="spacer-3 hero-animate delay-2"></div>
-      <div class="spacer-2 hero-animate delay-2"></div>
 
       <p class="mission-text hero-animate delay-2">
         Baseline delivers workflow-driven project, program, and task management solutions for federal government clients.
-        Leveraging the Microsoft Power Platform and existing M365 licensing, our solutions provide intuitive, user-centric applications,
-        governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
+        Leveraging the Microsoft Power Platform and existing Microsoft 365 licensing, our solutions provide intuitive,
+        user-centric applications, governed data management, and enterprise-grade reporting that support disciplined
+        execution and program oversight.
       </p>
 
       <div class="spacer-3 hero-animate delay-3"></div>
-      <div class="spacer-2 hero-animate delay-3"></div>
 
       <p class="mission-text hero-animate delay-3">
-        Engineered for <span class="highlight">rapid deployment</span> and operational reliability,
-        we deliver solutions that produce immediate value while remaining scalable and maintainable over time.
-        Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day
-        program execution to executive and customer decision-making.
+        Engineered for <span class="highlight">rapid deployment</span> and
+        <span class="highlight">operational reliability</span>, we deliver complete products early—applications,
+        workflows, and dashboards—so managers gain timely, decision-ready visibility while solutions remain scalable
+        and maintainable over time.
       </p>
+
     </div>
   </section>
 
-  <!-- CAPABILITIES (BOTTOM) -->
+  <!-- CAPABILITIES -->
   <section class="capability-section" aria-label="Capabilities">
 
-    <!-- Row 1: Project Management, Process Automation, M365 Custom Apps -->
+    <!-- Row 1 -->
     <div class="capability-row">
       <div class="image-card">
         <img src="projectmgmt.png" alt="Project Management">
@@ -68,28 +64,28 @@
       <div class="image-card">
         <img src="processauto.png" alt="Process Automation">
         <h3>Process Automation</h3>
-        <p>Streamlining workflows to reduce effort and enforce consistency.</p>
+        <p>Optimized workflows that enforce consistency and reduce manual effort.</p>
       </div>
 
       <div class="image-card">
         <img src="m365.png" alt="M365 Custom Applications">
         <h3>M365 Custom Applications</h3>
-        <p>Purpose-built tools aligned to how your teams work.</p>
+        <p>Purpose-built tools aligned to how teams actually execute work.</p>
       </div>
     </div>
 
-    <!-- Row 2: Enterprise Data, Enterprise Dashboards, Task Management -->
+    <!-- Row 2 -->
     <div class="capability-row">
       <div class="image-card">
-        <img src="Enterprisedata.png" alt="Enterprise Data &amp; Analytics">
+        <img src="Enterprisedata.png" alt="Enterprise Data & Analytics">
         <h3>Enterprise Data &amp; Analytics</h3>
-        <p>Trusted data transformed into actionable intelligence.</p>
+        <p>Trusted data transformed into actionable insight.</p>
       </div>
 
       <div class="image-card">
         <img src="enterprisedash.png" alt="Enterprise Dashboards">
         <h3>Enterprise Dashboards</h3>
-        <p>Real-time visibility from operational detail to executive insight.</p>
+        <p>Real-time visibility from operational detail to executive oversight.</p>
       </div>
 
       <div class="image-card">
@@ -101,7 +97,7 @@
 
   </section>
 
-  <!-- Shared loader: injects header/footer, sets active nav, wires mobile menu, handles no-flash -->
+  <!-- Shared loader -->
   <script src="site.js"></script>
 </body>
 </html>
