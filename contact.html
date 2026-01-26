@@ -42,17 +42,27 @@
       background:#ffffff;
       color:var(--ink);
       padding:56px 20px;
+      border-top:1px solid var(--section-border);
+      border-bottom:1px solid var(--section-border);
     }
 
     .contact-card{
-      max-width:520px; /* smaller box */
+      max-width:520px;
       margin:0 auto;
       background:#ffffff;
       border:1px solid var(--card-border);
       border-radius:18px;
-      padding:26px 24px; /* reduced padding */
-      box-shadow:0 10px 24px rgba(15,23,42,.08);
+      padding:22px 22px;
+      box-shadow:0 10px 24px rgba(15,23,42,.06);
       text-align:center;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    /* hover-over box behavior (matches other pages) */
+    .contact-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 16px 34px rgba(15,23,42,.10);
+      border-color:rgba(11,90,166,.20);
     }
 
     .contact-card h2{
@@ -61,6 +71,14 @@
       font-weight:900;
       letter-spacing:.02em;
       color:var(--bps-blue);
+    }
+
+    .contact-name{
+      margin:0 0 10px;
+      font-size:15px;
+      font-weight:800;
+      color:#0f172a;
+      letter-spacing:.01em;
     }
 
     .contact-card p{
@@ -85,15 +103,9 @@
       text-decoration:underline;
     }
 
-    .contact-meta{
-      margin-top:10px;
-      font-size:14px;
-      color:#475569;
-    }
-
     @media (max-width:768px){
       .contact-wrap{ padding:48px 18px; }
-      .contact-card{ padding:22px 20px; }
+      .contact-card{ padding:20px 18px; }
     }
   </style>
 </head>
@@ -114,18 +126,13 @@
     <div class="contact-card">
       <h2>Get in touch</h2>
 
-      <p>
-        Direct outreach is the fastest way to start a conversation.
-      </p>
+      <div class="contact-name">Thomas Lee</div>
+
 
       <div class="contact-email">
         <a href="mailto:tlee@baselineprojectsystems.com">
           tlee@baselineprojectsystems.com
         </a>
-      </div>
-
-      <div class="contact-meta">
-        Alexandria, VA
       </div>
     </div>
   </section>
