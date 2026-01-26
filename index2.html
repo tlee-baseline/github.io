@@ -135,7 +135,6 @@
     /* ================= HERO ================= */
     .hero{
       position:relative;
-      /* reduce hero height by ~200px vs 100vh */
       min-height:calc(100vh - 200px);
       display:flex;
       align-items:flex-start;
@@ -186,7 +185,7 @@
     }
 
     .hero-lead .emph{
-      font-weight:900; /* slightly different weight for "precise execution" */
+      font-weight:900;
       letter-spacing:.02em;
     }
 
@@ -197,13 +196,11 @@
       margin:0;
     }
 
-    /* Only highlight the specific phrases */
     .highlight{
       color:var(--bps-blue);
       font-weight:700;
     }
 
-    /* spacing utilities */
     .spacer-2{ margin-top:30px; }
     .spacer-3{ margin-top:42px; }
     .spacer-4{ margin-top:56px; }
@@ -317,13 +314,12 @@
     @media (max-width:768px){
       .logo img{ height:62px; }
 
-      /* Hide desktop nav, show menu button */
       nav{ display:none; }
       .menu-toggle{ display:flex; }
 
-      /* Enable overlay ONLY on mobile and match footer colors */
+      /* Footer-colored mobile overlay */
       .mobile-overlay{
-        display:none;               /* hidden until opened */
+        display:none;
         position:fixed;
         inset:0;
         background:rgba(2,6,23,.55);
@@ -344,16 +340,10 @@
       .mobile-topbar{
         display:flex;
         align-items:center;
-        justify-content:space-between;
+        justify-content:flex-end; /* no "Menu" label; just the Close button */
         gap:12px;
         padding:8px 2px 16px;
         border-bottom:1px solid rgba(255,255,255,.10);
-      }
-
-      .mobile-title{
-        font-weight:900;
-        letter-spacing:.02em;
-        color:#ffffff;
       }
 
       .mobile-btn{
@@ -439,11 +429,10 @@
     </div>
   </header>
 
-  <!-- MOBILE OVERLAY NAV (mobile-only styling in media query) -->
+  <!-- MOBILE OVERLAY NAV -->
   <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
     <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
       <div class="mobile-topbar">
-        <div class="mobile-title">Menu</div>
         <button class="mobile-btn" id="menuClose" type="button" aria-label="Close menu">Close</button>
       </div>
 
@@ -456,7 +445,7 @@
     </div>
   </div>
 
-  <!-- HERO IMAGE + UPDATED TEXT -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h1 class="hero-lead hero-animate delay-1">
@@ -468,29 +457,23 @@
       <div class="spacer-2 hero-animate delay-2"></div>
 
       <p class="mission-text hero-animate delay-2">
-        Baseline delivers workflow-driven custom project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. By leveraging existing M365 licensing and platform capabilities, our solutions deliver intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
+        Baseline delivers workflow-driven custom project, program, and task management solutions leveraging the Microsoft Power Platform for federal government clients. By leveraging existing Microsoft 365 licensing and platform capabilities, our solutions deliver intuitive, user-centric applications, governed data management, and enterprise-grade reporting that support disciplined execution and program oversight.
       </p>
 
       <div class="spacer-3 hero-animate delay-3"></div>
       <div class="spacer-2 hero-animate delay-3"></div>
 
       <p class="mission-text hero-animate delay-3">
-        Engineered for <span class="highlight">rapid deployment</span> and operational reliability, we move fast to deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
+        Engineered for <span class="highlight">rapid deployment</span> and <span class="highlight">operational reliability</span>, we deliver solutions that produce immediate value while remaining scalable and maintainable over time. Our work pairs modern, intuitive UI/UX with robust enterprise reporting, enabling accurate, timely visibility for stakeholders at every level—from day-to-day program execution to executive and customer decision-making.
       </p>
     </div>
   </section>
 
-  <!-- CAPABILITIES (BOTTOM) IN YOUR SPECIFIED ORDER -->
+  <!-- CAPABILITIES (BOTTOM) -->
   <section class="capability-section" aria-label="Capabilities">
 
-    <!-- Row 1: M365, Project, Process Automation -->
+    <!-- Row 1: Project Management, Process Automation, M365 Custom Apps -->
     <div class="capability-row">
-      <div class="image-card">
-        <img src="m365.png" alt="M365 Custom Applications">
-        <h3>M365 Custom Apps</h3>
-        <p>Purpose-built tools aligned to how your teams work.</p>
-      </div>
-
       <div class="image-card">
         <img src="projectmgmt.png" alt="Project Management">
         <h3>Project Management</h3>
@@ -502,9 +485,15 @@
         <h3>Process Automation</h3>
         <p>Streamlining workflows to reduce effort and enforce consistency.</p>
       </div>
+
+      <div class="image-card">
+        <img src="m365.png" alt="M365 Custom Applications">
+        <h3>M365 Custom Applications</h3>
+        <p>Purpose-built tools aligned to how your teams work.</p>
+      </div>
     </div>
 
-    <!-- Row 2: Enterprise Data, Enterprise Dashboards, Task -->
+    <!-- Row 2: Enterprise Data, Enterprise Dashboards, Task Management -->
     <div class="capability-row">
       <div class="image-card">
         <img src="Enterprisedata.png" alt="Enterprise Data &amp; Analytics">
@@ -521,7 +510,7 @@
       <div class="image-card">
         <img src="taskmgmt.png" alt="Task Management">
         <h3>Task Management</h3>
-        <p>User-focused task execution with clear visibility, ownership, and reporting.</p>
+        <p>User-centric task workflows that improve transparency, follow-through, and reporting.</p>
       </div>
     </div>
 
@@ -541,7 +530,7 @@
   </footer>
 
   <script>
-    // Mobile menu toggle (stable behavior) - Close button only
+    // Mobile menu toggle (Close button only)
     (function () {
       const toggle = document.getElementById("menuToggle");
       const overlay = document.getElementById("mobileOverlay");
@@ -573,20 +562,16 @@
         isOpen() ? closeMenu() : openMenu();
       });
 
-      // Close button
       if (closeBtn) closeBtn.addEventListener("click", () => closeMenu());
 
-      // Tap outside the panel to close (overlay background)
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeMenu();
       });
 
-      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && isOpen()) closeMenu();
       });
 
-      // Close after clicking a link
       overlay.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => closeMenu());
       });
