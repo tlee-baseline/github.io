@@ -1,40 +1,44 @@
-<!-- HEADER (shared) -->
 <header>
   <div class="header-inner">
     <div class="logo">
       <img src="logo.png" alt="Baseline Logo">
     </div>
 
+    <!-- Desktop Navigation -->
     <nav aria-label="Primary navigation">
       <ul>
-        <li><a href="index.html" data-nav="index.html">Home</a></li>
-        <li><a href="services.html" data-nav="services.html">Services</a></li>
-        <li><a href="mission.html" data-nav="mission.html">About</a></li>
-        <li><a href="contact.html" data-nav="contact.html">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
 
-    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileOverlay" type="button">
+    <!-- Mobile Menu Button (icon only, no label) -->
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">
       <span class="hamburger" aria-hidden="true">
         <span></span><span></span><span></span>
       </span>
-      Menu
     </button>
   </div>
 </header>
 
-<!-- MOBILE OVERLAY NAV (shared) -->
+<!-- Mobile Overlay Menu -->
 <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
   <div class="mobile-panel" role="menu" aria-label="Mobile navigation">
+
     <div class="mobile-topbar">
-      <button class="mobile-btn" id="menuClose" type="button" aria-label="Close menu">Close</button>
+      <button class="mobile-btn" id="menuClose" type="button" aria-label="Close menu">
+        Close
+      </button>
     </div>
 
     <div class="mobile-links">
-      <a role="menuitem" href="index.html" data-nav="index.html">Home</a>
-      <a role="menuitem" href="services.html" data-nav="services.html">Services</a>
-      <a role="menuitem" href="mission.html" data-nav="mission.html">About</a>
-      <a role="menuitem" href="contact.html" data-nav="contact.html">Contact</a>
+      <a role="menuitem" href="index.html">Home</a>
+      <a role="menuitem" href="services.html">Services</a>
+      <a role="menuitem" href="about.html">About</a>
+      <a role="menuitem" href="contact.html">Contact</a>
     </div>
+
   </div>
 </div>
