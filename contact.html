@@ -13,12 +13,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Shared stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
   <style>
     .contact-hero{
-      padding:72px 20px 56px;
+      padding:72px 20px 48px;
       background:#0b1220;
       border-bottom:1px solid rgba(255,255,255,.08);
       text-align:center;
@@ -32,29 +31,53 @@
     }
 
     .contact-hero p{
-      margin:16px auto 0;
+      margin:14px auto 0;
       max-width:760px;
       font-size:clamp(15px, 2vw, 18px);
       line-height:1.7;
       color:#dbe3ee;
     }
 
-    .contact-content{
+    .contact-wrap{
       background:#ffffff;
       color:var(--ink);
-      padding:72px 20px;
+      padding:56px 20px;
+    }
+
+    .contact-card{
+      max-width:520px; /* smaller box */
+      margin:0 auto;
+      background:#ffffff;
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      padding:26px 24px; /* reduced padding */
+      box-shadow:0 10px 24px rgba(15,23,42,.08);
       text-align:center;
     }
 
-    .contact-email{
-      font-size:clamp(18px, 2.6vw, 22px);
+    .contact-card h2{
+      margin:0 0 10px;
+      font-size:18px;
       font-weight:900;
       letter-spacing:.02em;
       color:var(--bps-blue);
     }
 
+    .contact-card p{
+      margin:0 0 14px;
+      font-size:15px;
+      line-height:1.65;
+      color:#334155;
+    }
+
+    .contact-email{
+      font-size:17px;
+      font-weight:900;
+      letter-spacing:.02em;
+    }
+
     .contact-email a{
-      color:inherit;
+      color:var(--bps-blue);
       text-decoration:none;
     }
 
@@ -63,15 +86,14 @@
     }
 
     .contact-meta{
-      margin-top:12px;
-      font-size:14.5px;
+      margin-top:10px;
+      font-size:14px;
       color:#475569;
     }
 
     @media (max-width:768px){
-      .contact-content{
-        padding:56px 18px;
-      }
+      .contact-wrap{ padding:48px 18px; }
+      .contact-card{ padding:22px 20px; }
     }
   </style>
 </head>
@@ -87,16 +109,24 @@
     </p>
   </section>
 
-  <!-- CONTENT -->
-  <section class="contact-content" aria-label="Contact Baseline">
-    <div class="contact-email">
-      <a href="mailto:tlee@baselineprojectsystems.com">
-        tlee@baselineprojectsystems.com
-      </a>
-    </div>
+  <!-- CONTACT CONTENT -->
+  <section class="contact-wrap" aria-label="Contact Baseline">
+    <div class="contact-card">
+      <h2>Get in touch</h2>
 
-    <div class="contact-meta">
-      Alexandria, VA
+      <p>
+        Direct outreach is the fastest way to start a conversation.
+      </p>
+
+      <div class="contact-email">
+        <a href="mailto:tlee@baselineprojectsystems.com">
+          tlee@baselineprojectsystems.com
+        </a>
+      </div>
+
+      <div class="contact-meta">
+        Alexandria, VA
+      </div>
     </div>
   </section>
 
