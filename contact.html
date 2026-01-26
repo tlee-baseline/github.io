@@ -16,6 +16,19 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
+    /* Page-level layout fix */
+    body{
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+
     .contact-hero{
       padding:72px 20px 48px;
       background:#0b1220;
@@ -44,11 +57,15 @@
       padding:56px 20px;
       border-top:1px solid var(--section-border);
       border-bottom:1px solid var(--section-border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:1;
     }
 
     .contact-card{
       max-width:520px;
-      margin:0 auto;
+      width:100%;
       background:#ffffff;
       border:1px solid var(--card-border);
       border-radius:18px;
@@ -58,7 +75,6 @@
       transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
 
-    /* hover-over box behavior (matches other pages) */
     .contact-card:hover{
       transform:translateY(-3px);
       box-shadow:0 16px 34px rgba(15,23,42,.10);
@@ -111,31 +127,38 @@
 </head>
 
 <body>
-  <!-- Header + Mobile Menu + Footer via site.js -->
+  <!-- Header injected by site.js -->
 
-  <!-- HERO -->
-  <section class="contact-hero">
-    <h1>Contact</h1>
-    <p>
-      For teaming, delivery support, or a focused capabilities discussion.
-    </p>
-  </section>
+  <main>
+    <!-- HERO -->
+    <section class="contact-hero">
+      <h1>Contact</h1>
+      <p>
+        For teaming, delivery support, or a focused capabilities discussion.
+      </p>
+    </section>
 
-  <!-- CONTACT CONTENT -->
-  <section class="contact-wrap" aria-label="Contact Baseline">
-    <div class="contact-card">
-      <h2>Get in touch</h2>
+    <!-- CONTACT CONTENT -->
+    <section class="contact-wrap" aria-label="Contact Baseline">
+      <div class="contact-card">
+        <h2>Get in touch</h2>
 
-      <div class="contact-name">Thomas Lee</div>
+        <div class="contact-name">Thomas Lee</div>
 
+        <p>
+          Direct outreach is the fastest way to start a conversation.
+        </p>
 
-      <div class="contact-email">
-        <a href="mailto:tlee@baselineprojectsystems.com">
-          tlee@baselineprojectsystems.com
-        </a>
+        <div class="contact-email">
+          <a href="mailto:tlee@baselineprojectsystems.com">
+            tlee@baselineprojectsystems.com
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <!-- Footer injected by site.js -->
 
   <script src="site.js"></script>
 </body>
