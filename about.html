@@ -2,89 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About Us | Baseline Project Systems</title>
-  <meta name="description" content="About Baseline Project Systems, LLC." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Baseline</title>
+
+  <meta name="description" content="About Baseline — workflow-driven delivery across Microsoft 365, the Power Platform, and enterprise reporting for federal government clients." />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+  <!-- Shared stylesheet (matches your new homepage template) -->
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-only styling (aligned to the new template palette and typography) */
+    .about-hero{
+      position:relative;
+      padding:56px 20px 44px;
+      background:#0b1220;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+
+    .about-hero-inner{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .about-hero h1{
+      margin:0;
+      font-size:clamp(24px, 3.2vw, 40px);
+      font-weight:900;
+      letter-spacing:.01em;
+      color:#ffffff;
+    }
+
+    .about-hero p{
+      margin:14px auto 0;
+      max-width:900px;
+      font-size:clamp(15px, 2vw, 18px);
+      line-height:1.75;
+      color:#dbe3ee;
+    }
+
+    .about-wrap{
+      background:#ffffff;
+      color:var(--ink);
+      border-top:1px solid var(--section-border);
+      border-bottom:1px solid var(--section-border);
+    }
+
+    .about-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 32px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:22px;
+    }
+
+    .about-card{
+      background:#ffffff;
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      padding:22px 20px;
+      box-shadow:0 10px 24px rgba(15,23,42,.06);
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .about-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 16px 34px rgba(15,23,42,.10);
+      border-color:rgba(11,90,166,.20);
+    }
+
+    .about-title{
+      margin:0 0 10px;
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:.02em;
+      color:var(--bps-blue);
+    }
+
+    .about-list{
+      margin:0;
+      padding-left:18px;
+      color:#334155;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .about-list li{ margin:8px 0; }
+
+    .about-wide{
+      margin-top:22px;
+    }
+
+    .about-wide .about-card{ box-shadow:0 10px 24px rgba(15,23,42,.06); }
+
+    .about-note{
+      margin-top:22px;
+      padding:16px 18px;
+      border:1px solid var(--section-border);
+      background:#f8fafc;
+      border-radius:16px;
+      color:#334155;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .about-note strong{ color:var(--ink); }
+
+    @media (max-width: 920px){
+      .about-inner{ padding:34px 18px; }
+      .about-grid{ grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <img src="logo.png" alt="Baseline Project Systems Logo">
-        <div class="title">
-          <h1>Baseline Project Systems, LLC</h1>
-          <p>Workflow-driven delivery across Microsoft 365 — from requirements to adoption — with trusted, rolled-up reporting.</p>
-        </div>
+  <!-- Header + Mobile Menu + Footer are injected automatically by site.js -->
+
+  <!-- PAGE HERO -->
+  <section class="about-hero">
+    <div class="about-hero-inner">
+      <h1>About</h1>
+      <p>
+        Baseline is a federal-focused delivery partner specializing in Microsoft 365, the Power Platform, and enterprise PMO solutions.
+        Our approach emphasizes execution discipline, governance, and decision-quality reporting—without unnecessary custom code.
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT CONTENT -->
+  <section class="about-wrap" aria-label="About Baseline">
+    <div class="about-inner">
+      <div class="about-grid">
+
+        <article class="about-card">
+          <h2 class="about-title">Mission</h2>
+          <ul class="about-list">
+            <li>Enable mission teams to execute with clarity and accountability.</li>
+            <li>Capture data once and reuse it across apps, schedules, dashboards, and exports.</li>
+            <li>Deliver solutions that are maintainable, scalable, and supportable.</li>
+          </ul>
+        </article>
+
+        <article class="about-card">
+          <h2 class="about-title">Operating Principles</h2>
+          <ul class="about-list">
+            <li><strong>Governance-first:</strong> roles, rules, and reporting lines are explicit.</li>
+            <li><strong>Workflow-driven:</strong> intake, approvals, execution, and closure are automated.</li>
+            <li><strong>Adoption-focused:</strong> training and sustainment are part of delivery.</li>
+          </ul>
+        </article>
+
       </div>
 
-      <nav class="nav" aria-label="Primary">
-        <a href="index.html"><span class="dot"></span>Home</a>
-        <a href="services.html"><span class="dot red"></span>Services</a>
-        <a href="about.html" aria-current="page"><span class="dot"></span>About Us</a>
-        <a href="contact.html"><span class="dot"></span>Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="card">
-        <h2>About Us</h2>
-        <p class="lead">
-          Baseline Project Systems is a federal-focused delivery partner specializing in Microsoft 365, the Power Platform, and enterprise PMO solutions.
-          Our approach emphasizes execution discipline, governance, and decision-quality reporting—without unnecessary custom code.
-        </p>
-
-        <div class="split">
-          <div class="card" style="box-shadow:none;border-style:dashed">
-            <h2>Mission</h2>
-            <ul>
-              <li>Enable mission teams to execute with clarity and accountability.</li>
-              <li>Capture data once, use it everywhere—apps, schedules, dashboards, and exports.</li>
-              <li>Deliver solutions that are maintainable, scalable, and supportable.</li>
-            </ul>
-          </div>
-
-          <div class="card" style="box-shadow:none;border-style:dashed">
-            <h2>Operating Principles</h2>
-            <ul>
-              <li>Governance-first: roles, rules, and reporting lines are explicit.</li>
-              <li>Workflow-driven: intake, approvals, execution, and closure are automated.</li>
-              <li>Adoption-focused: training and sustainment are part of delivery.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card" style="box-shadow:none;border-style:dashed; margin-top:18px">
-          <h2>Federal Delivery Fit</h2>
-          <ul>
+      <div class="about-wide">
+        <article class="about-card">
+          <h2 class="about-title">Federal Delivery Fit</h2>
+          <ul class="about-list">
             <li>Prime and subcontract engagements</li>
-            <li>Rapid onboarding and clear handoff artifacts</li>
+            <li>Rapid onboarding with clear handoff artifacts</li>
             <li>Controls-aligned reporting and executive-ready outputs</li>
           </ul>
-        </div>
-      </section>
-
-      <div class="footer">
-        <div class="footer-left">
-          <div>© <span id="y"></span> Baseline Project Systems, LLC</div>
-          <div>Alexandria, VA</div>
-        </div>
-        <div>
-          <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a>
-        </div>
+        </article>
       </div>
-    </main>
-  </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+      <div class="about-note">
+        <strong>What clients notice:</strong> Change is not easy, but adoption improves when tools align to how teams actually execute.
+        We build user-centric solutions with modern UI/UX and operational guardrails that make execution measurable, transparent, and reportable.
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared loader: injects header/footer, sets active nav, wires mobile menu, handles no-flash -->
+  <script src="site.js"></script>
 </body>
 </html>
