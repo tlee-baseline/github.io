@@ -13,11 +13,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Shared stylesheet (matches your new homepage template) -->
+  <!-- Shared stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Page-only styling aligned to the new template */
+    /* Page-only styling aligned to the site theme */
     .contact-hero{
       position:relative;
       padding:56px 20px 44px;
@@ -41,7 +41,7 @@
 
     .contact-hero p{
       margin:14px auto 0;
-      max-width:900px;
+      max-width:860px;
       font-size:clamp(15px, 2vw, 18px);
       line-height:1.75;
       color:#dbe3ee;
@@ -55,149 +55,74 @@
     }
 
     .contact-inner{
-      max-width:1100px;
+      max-width:960px;
       margin:0 auto;
-      padding:44px 32px;
+      padding:56px 32px;
+      text-align:center;
     }
 
-    .contact-grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:22px;
-      align-items:start;
-    }
-
-    .panel{
+    .contact-card{
       background:#ffffff;
       border:1px solid var(--card-border);
-      border-radius:18px;
-      padding:22px 20px;
-      box-shadow:0 10px 24px rgba(15,23,42,.06);
+      border-radius:22px;
+      padding:36px 32px;
+      box-shadow:0 14px 34px rgba(15,23,42,.08);
     }
 
-    .panel h2{
-      margin:0 0 10px;
+    .contact-card h2{
+      margin:0 0 14px;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.02em;
+      color:var(--bps-blue);
+    }
+
+    .contact-card p{
+      margin:0 0 22px;
+      font-size:16px;
+      line-height:1.75;
+      color:#334155;
+    }
+
+    .contact-email{
       font-size:18px;
       font-weight:900;
       letter-spacing:.02em;
-      color:var(--bps-blue);
     }
 
-    .panel p{
-      margin:0 0 16px;
-      color:#334155;
-      line-height:1.7;
-      font-size:15px;
-    }
-
-    .form{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top:10px;
-    }
-
-    label{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      font-size:14px;
-      font-weight:700;
-      color:#334155;
-    }
-
-    input, textarea{
-      font:inherit;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid #e5e7eb;
-      outline:none;
-      background:#ffffff;
-      color:var(--ink);
-      transition:border-color .2s ease, box-shadow .2s ease;
-    }
-
-    textarea{
-      min-height:140px;
-      resize:vertical;
-      line-height:1.6;
-    }
-
-    input:focus, textarea:focus{
-      border-color:rgba(11,90,166,.50);
-      box-shadow:0 0 0 4px rgba(11,90,166,.12);
-    }
-
-    .btn{
-      margin-top:6px;
-      appearance:none;
-      border:none;
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:900;
-      letter-spacing:.02em;
-      cursor:pointer;
-      background:var(--bps-blue);
-      color:#ffffff;
-      transition:transform .15s ease, filter .15s ease;
-    }
-
-    .btn:hover{ filter:brightness(1.03); }
-    .btn:active{ transform:translateY(1px); }
-
-    .side-list{
-      margin:0;
-      padding-left:18px;
-      color:#334155;
-      line-height:1.7;
-      font-size:15px;
-    }
-
-    .side-list li{ margin:8px 0; }
-
-    .side-list a{
+    .contact-email a{
       color:var(--bps-blue);
       text-decoration:none;
-      font-weight:800;
     }
 
-    .side-list a:hover{ text-decoration:underline; }
-
-    .subhead{
-      margin:18px 0 10px;
-      font-size:16px;
-      font-weight:900;
-      letter-spacing:.02em;
-      color:#0f172a;
+    .contact-email a:hover{
+      text-decoration:underline;
     }
 
-    .note{
-      margin-top:16px;
-      padding:14px 16px;
-      border:1px solid var(--section-border);
-      background:#f8fafc;
-      border-radius:16px;
-      color:#334155;
-      line-height:1.7;
+    .contact-meta{
+      margin-top:24px;
       font-size:14.5px;
+      line-height:1.7;
+      color:#475569;
     }
 
-    @media (max-width: 920px){
-      .contact-inner{ padding:34px 18px; }
-      .contact-grid{ grid-template-columns:1fr; }
+    @media (max-width:768px){
+      .contact-inner{ padding:40px 18px; }
+      .contact-card{ padding:28px 22px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Header + Mobile Menu + Footer are injected automatically by site.js -->
+  <!-- Header + Mobile Menu + Footer injected via site.js -->
 
-  <!-- PAGE HERO -->
+  <!-- HERO -->
   <section class="contact-hero">
     <div class="contact-hero-inner">
       <h1>Contact</h1>
       <p>
-        For teaming, delivery support, or a quick capabilities discussion, reach out below. We respond promptly with next steps and a clear path forward.
+        For teaming, delivery support, or a focused capabilities discussion, reach out directly.
+        We respond promptly with next steps and a clear path forward.
       </p>
     </div>
   </section>
@@ -205,60 +130,32 @@
   <!-- CONTACT CONTENT -->
   <section class="contact-wrap" aria-label="Contact Baseline">
     <div class="contact-inner">
-      <div class="contact-grid">
+      <div class="contact-card">
 
-        <section class="panel" aria-label="Send a message">
-          <h2>Send a Message</h2>
-          <p>
-            Use the form below to share context on your requirement, timeline, and stakeholders. If you prefer, email us directly.
-          </p>
+        <h2>Start the Conversation</h2>
 
-          <!-- NOTE: mailto forms are limited by the user's email client. This keeps it simple and consistent with static hosting. -->
-          <form class="form" action="mailto:tlee@baselineprojectsystems.com" method="post" enctype="text/plain">
-            <label>
-              Name
-              <input name="name" autocomplete="name" required>
-            </label>
+        <p>
+          Baseline engages with primes, government teams, and delivery partners across
+          project execution, process automation, and enterprise reporting.
+          Initial discussions are direct, efficient, and tailored to the mission.
+        </p>
 
-            <label>
-              Email
-              <input name="email" type="email" autocomplete="email" required>
-            </label>
+        <div class="contact-email">
+          <a href="mailto:tlee@baselineprojectsystems.com">
+            tlee@baselineprojectsystems.com
+          </a>
+        </div>
 
-            <label>
-              Message
-              <textarea name="message" required></textarea>
-            </label>
-
-            <button class="btn" type="submit">Send</button>
-          </form>
-
-          <div class="note">
-            Tip: For faster triage, include the sponsoring organization, target platform (M365/Power Platform), and any reporting or governance constraints.
-          </div>
-        </section>
-
-        <aside class="panel" aria-label="Direct contact and requests">
-          <h2>Direct</h2>
-          <ul class="side-list">
-            <li>Email: <a href="mailto:tlee@baselineprojectsystems.com">tlee@baselineprojectsystems.com</a></li>
-            <li>Location: Alexandria, VA</li>
-          </ul>
-
-          <div class="subhead">Typical Requests</div>
-          <ul class="side-list">
-            <li>Power Platform app + workflow delivery</li>
-            <li>Power BI rollup reporting</li>
-            <li>Project Online modernization</li>
-            <li>PMO governance and tooling</li>
-          </ul>
-        </aside>
+        <div class="contact-meta">
+          Alexandria, VA<br>
+          Federal delivery • Prime and subcontract engagements
+        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Shared loader: injects header/footer, sets active nav, wires mobile menu, handles no-flash -->
+  <!-- Shared loader -->
   <script src="site.js"></script>
 </body>
 </html>
